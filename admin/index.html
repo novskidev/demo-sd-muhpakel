@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — SD Muhammadiyah Pakel (Demo)</title>
+<meta name="description" content="Demo panel admin website sekolah. Kelola berita, galeri, prestasi, halaman, PPDB, dan pengaturan tampilan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B3D91;--navy-dark:#082B66;--navy-deep:#051C45;
+  --gold:#C9A227;--gold-soft:#F5E9C8;
+  --green:#0E9F6E;--green-soft:#E7F6EF;
+  --blue-soft:#E8F0FC;--ink:#1F2937;--muted:#5B6B82;
+  --line:#E2E8F0;--bg:#F1F5F9;--white:#fff;--red:#DC2626;--red-soft:#FEE2E2;
+  --radius:14px;--shadow:0 8px 24px rgba(8,43,102,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:.92rem;color:var(--ink)}
+/* ===== LAYOUT ===== */
+.layout{display:flex;min-height:100vh}
+/* ===== SIDEBAR ===== */
+.sidebar{width:252px;background:linear-gradient(180deg,var(--navy-deep),var(--navy-dark));color:#C9D7F3;display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:50;transition:.25s}
+.sidebar-brand{display:flex;align-items:center;gap:11px;padding:20px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--gold),#A88314);display:grid;place-items:center;font-weight:800;color:#fff;font-size:.95rem;flex-shrink:0}
+.brand-name{font-weight:800;color:#fff;font-size:.9rem;line-height:1.2}
+.brand-name small{display:block;font-weight:600;color:#9DB4DC;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase}
+.sidebar .nav{padding:14px 10px;flex:1;overflow-y:auto}
+.nav-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E87B5;padding:12px 12px 6px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;font-weight:600;font-size:.87rem;color:#B9C9E8;transition:.15s;margin-bottom:2px;width:100%;text-align:left}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav-item.active{background:rgba(201,162,39,.16);color:var(--gold);box-shadow:inset 3px 0 0 var(--gold)}
+.nav-item .ic{width:20px;text-align:center;font-size:1rem}
+.nav-item .badge{margin-left:auto;background:var(--red);color:#fff;font-size:.62rem;font-weight:800;padding:2px 7px;border-radius:999px}
+.sidebar-foot{padding:14px;border-top:1px solid rgba(255,255,255,.08)}
+.user-chip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);padding:10px 12px;border-radius:12px}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--green),#0B7A55);display:grid;place-items:center;color:#fff;font-weight:800;font-size:.78rem;flex-shrink:0}
+.user-chip .u-name{font-weight:700;color:#fff;font-size:.82rem;line-height:1.2}
+.user-chip .u-role{font-size:.68rem;color:#9DB4DC}
+/* ===== MAIN ===== */
+.main{flex:1;margin-left:252px;display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--white);border-bottom:1px solid var(--line);padding:0 26px;height:62px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:40}
+.hamburger{display:none;font-size:1.3rem;color:var(--navy);padding:6px}
+.topbar-title{font-weight:800;color:var(--navy-dark);font-size:1rem}
+.topbar-search{flex:1;max-width:360px;position:relative}
+.topbar-search input{width:100%;padding:9px 14px 9px 36px;border:1px solid var(--line);border-radius:10px;background:var(--bg);outline:none;transition:.2s}
+.topbar-search input:focus{border-color:var(--navy);background:#fff}
+.topbar-search .sic{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.icon-btn{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--bg);color:var(--navy);font-size:1rem;position:relative;transition:.15s}
+.icon-btn:hover{background:var(--blue-soft)}
+.icon-btn .dot{position:absolute;top:8px;right:9px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.view-site{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;font-weight:700;padding:9px 16px;border-radius:10px;font-size:.8rem;transition:.2s}
+.view-site:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+/* ===== CONTENT ===== */
+.content{padding:26px;flex:1}
+.page{display:none}
+.page.active{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.page-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.page-head h1{font-size:1.35rem;font-weight:800;color:var(--navy-dark)}
+.page-head p{color:var(--muted);font-size:.85rem;margin-top:2px}
+/* ===== STAT CARDS ===== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px}
+.stat-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;gap:14px;align-items:center;transition:.2s}
+.stat-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.stat-ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;font-size:1.3rem;flex-shrink:0}
+.stat-card b{font-size:1.5rem;font-weight:800;color:var(--navy-dark);display:block;line-height:1.1}
+.stat-card span{font-size:.76rem;color:var(--muted);font-weight:600}
+.trend{font-size:.7rem;font-weight:700;color:var(--green);background:var(--green-soft);padding:2px 8px;border-radius:999px;display:inline-block;margin-top:6px}
+/* ===== CARDS ===== */
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:22px}
+.card h3{font-size:.98rem;font-weight:800;color:var(--navy-dark);margin-bottom:4px}
+.card .card-sub{font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+/* ===== TABLES ===== */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--line);font-weight:700}
+td{padding:12px;border-bottom:1px solid var(--line);font-size:.85rem;vertical-align:middle}
+tr:hover td{background:#F8FAFE}
+.t-cell{display:flex;align-items:center;gap:10px}
+.t-thumb{width:38px;height:38px;border-radius:9px;object-fit:cover;flex-shrink:0}
+.t-title{font-weight:700;color:var(--ink);font-size:.85rem}
+.t-sub{font-size:.72rem;color:var(--muted)}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:999px}
+.badge.pub{background:var(--green-soft);color:var(--green)}
+.badge.draft{background:var(--gold-soft);color:#9A7B10}
+.badge.new{background:var(--blue-soft);color:var(--navy)}
+.row-actions{display:flex;gap:6px;justify-content:flex-end}
+.mini-btn{padding:6px 10px;border-radius:8px;font-size:.74rem;font-weight:700;transition:.15s}
+.mini-btn.edit{background:var(--blue-soft);color:var(--navy)}
+.mini-btn.edit:hover{background:var(--navy);color:#fff}
+.mini-btn.del{background:var(--red-soft);color:var(--red)}
+.mini-btn.del:hover{background:var(--red);color:#fff}
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;font-weight:700;padding:10px 20px;border-radius:10px;font-size:.84rem;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#A88314)}
+.btn-ghost{background:var(--white);color:var(--navy);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--navy);background:var(--blue-soft)}
+.btn-sm{padding:7px 13px;font-size:.76rem}
+/* ===== FORMS ===== */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:16px}
+.form-group.full{grid-column:1/-1}
+label{display:block;font-weight:700;font-size:.78rem;color:var(--navy-dark);margin-bottom:6px}
+label .req{color:var(--red)}
+input[type=text],input[type=date],input[type=number],input[type=url],select,textarea{width:100%;padding:10px 13px;border:1.5px solid var(--line);border-radius:10px;outline:none;transition:.15s;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,61,145,.1)}
+textarea{resize:vertical;min-height:110px}
+.hint{font-size:.72rem;color:var(--muted);margin-top:5px}
+.upload-box{border:2px dashed var(--line);border-radius:12px;padding:26px;text-align:center;color:var(--muted);font-size:.82rem;cursor:pointer;transition:.2s;background:#F8FAFE}
+.upload-box:hover{border-color:var(--navy);color:var(--navy);background:var(--blue-soft)}
+.upload-box b{display:block;font-size:.88rem;margin-bottom:3px}
+/* ===== SWITCH ===== */
+.switch-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.switch-row:last-child{border-bottom:none}
+.switch-row .sw-title{font-weight:700;font-size:.86rem}
+.switch-row .sw-desc{font-size:.74rem;color:var(--muted)}
+.switch{position:relative;width:42px;height:24px;background:#CBD5E1;border-radius:999px;transition:.2s;flex-shrink:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.switch.on{background:var(--green)}
+.switch.on::after{left:21px}
+/* ===== COLOR THEMES ===== */
+.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.theme-opt{border:2px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:.15s;text-align:center}
+.theme-opt:hover{border-color:var(--navy)}
+.theme-opt.sel{border-color:var(--navy);background:var(--blue-soft)}
+.theme-swatches{display:flex;gap:5px;justify-content:center;margin-bottom:8px}
+.sw{width:22px;height:22px;border-radius:6px}
+.theme-opt span{font-size:.74rem;font-weight:700;color:var(--ink)}
+/* ===== GALERI GRID ===== */
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gal-item{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;border:1px solid var(--line)}
+.gal-item img{width:100%;height:100%;object-fit:cover}
+.gal-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(5,28,69,.88));opacity:0;transition:.25s;display:flex;flex-direction:column;justify-content:flex-end;padding:12px}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-overlay span{color:#fff;font-size:.74rem;font-weight:700;margin-bottom:7px}
+.gal-overlay .gal-actions{display:flex;gap:6px}
+/* ===== LOGIN ===== */
+.login-screen{display:none;position:fixed;inset:0;z-index:100;background:linear-gradient(150deg,var(--navy-deep),var(--navy) 60%,#1450B8);place-items:center;padding:20px}
+.login-screen.show{display:grid}
+.login-card{background:#fff;border-radius:20px;padding:38px 34px;width:100%;max-width:400px;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.login-logo{width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,var(--navy),var(--navy-dark));display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.1rem;margin:0 auto 14px}
+.login-card h2{text-align:center;font-size:1.15rem;font-weight:800;color:var(--navy-dark)}
+.login-card .sub{text-align:center;color:var(--muted);font-size:.8rem;margin:4px 0 22px}
+.login-card label{margin-top:14px}
+.demo-note{margin-top:16px;background:var(--gold-soft);color:#7A6210;border-radius:10px;padding:10px 14px;font-size:.76rem;font-weight:600;text-align:center}
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy-dark);color:#fff;padding:13px 20px;border-radius:12px;font-size:.84rem;font-weight:600;box-shadow:0 12px 40px rgba(0,0,0,.3);opacity:0;transform:translateY(12px);transition:.3s;z-index:200;display:flex;align-items:center;gap:9px}
+.toast.show{opacity:1;transform:none}
+.toast .tic{color:var(--gold)}
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .stats{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:repeat(3,1fr)}
+  .theme-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:820px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:none}
+  .main{margin-left:0}
+  .hamburger{display:block}
+  .grid-2,.form-grid{grid-template-columns:1fr}
+  .topbar-search{display:none}
+}
+@media(max-width:560px){
+  .stats{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .content{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div class="login-screen show" id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">SD</div>
+    <h2>Panel Admin Sekolah</h2>
+    <p class="sub">SD Muhammadiyah Pakel · Demo Interaktif</p>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="loginUser" value="admin@sdmp.sch.id" placeholder="admin@sdmp.sch.id">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPass" value="demo1234" placeholder="••••••••">
+    </div>
+    <button class="btn" style="width:100%;justify-content:center;margin-top:6px" onclick="doLogin()">Masuk ke Dashboard</button>
+    <div class="demo-note">🔑 Mode demo — klik tombol masuk untuk menjelajah. Tidak ada data yang disimpan.</div>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">SD</div>
+      <div class="brand-name">SD Muhammadiyah Pakel<small>Panel Admin</small></div>
+    </div>
+    <nav class="nav" id="sideNav">
+      <div class="nav-label">Utama</div>
+      <button class="nav-item active" data-page="dashboard"><span class="ic">📊</span>Dashboard</button>
+      <button class="nav-item" data-page="berita"><span class="ic">📰</span>Berita &amp; Prestasi</button>
+      <button class="nav-item" data-page="galeri"><span class="ic">🖼️</span>Galeri</button>
+      <button class="nav-item" data-page="halaman"><span class="ic">📄</span>Halaman</button>
+      <div class="nav-label">Konten</div>
+      <button class="nav-item" data-page="ekstra"><span class="ic">⚽</span>Ekstrakurikuler</button>
+      <button class="nav-item" data-page="ppdb"><span class="ic">📋</span>PPDB<span class="badge">Baru</span></button>
+      <button class="nav-item" data-page="alumni"><span class="ic">🎓</span>Pendataan Alumni</button>
+      <div class="nav-label">Sistem</div>
+      <button class="nav-item" data-page="tampilan"><span class="ic">🎨</span>Tampilan Website</button>
+      <button class="nav-item" data-page="pengaturan"><span class="ic">⚙️</span>Pengaturan</button>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="user-chip">
+        <div class="avatar">NS</div>
+        <div>
+          <div class="u-name">Admin Sekolah</div>
+          <div class="u-role">Super Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="main">
+    <div class="topbar">
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title" id="topbarTitle">Dashboard</div>
+      <div class="topbar-search">
+        <span class="sic">🔍</span>
+        <input type="text" placeholder="Cari berita, galeri, halaman...">
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" title="Notifikasi">🔔<span class="dot"></span></button>
+        <a class="view-site" href="https://novskidev.github.io/demo-sd-muhpakel/" target="_blank">🌐 Lihat Website</a>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ========== DASHBOARD ========== -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-head">
+          <div><h1>Selamat datang, Admin 👋</h1><p>Ringkasan kondisi website SD Muhammadiyah Pakel hari ini.</p></div>
+          <button class="btn btn-gold" onclick="go('berita')">＋ Tulis Berita Baru</button>
+        </div>
+        <div class="stats">
+          <div class="stat-card"><div class="stat-ic" style="background:var(--blue-soft)">📰</div><div><b>24</b><span>Total Berita</span><div class="trend">▲ 4 minggu ini</div></div></div>
+          <div class="stat-card"><div class="stat-ic" style="background:var(--green-soft)">🖼️</div><div><b>86</b><span>Foto Galeri</span><div class="trend">▲ 12 minggu ini</div></div></div>
+          <div class="stat-card"><div class="stat-ic" style="background:var(--gold-soft)">👥</div><div><b>1.248</b><span>Pengunjung bulan ini</span><div class="trend">▲ 18%</div></div></div>
+          <div class="stat-card"><div class="stat-ic" style="background:#FDE8E8">🏆</div><div><b>18</b><span>Prestasi Siswa</span><div class="trend">▲ 3 bulan ini</div></div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Berita Terbaru</h3>
+            <p class="card-sub">5 postingan terakhir di website</p>
+            <div class="table-wrap">
+              <table>
+                <tr><th>Judul</th><th>Status</th><th style="text-align:right">Aksi</th></tr>
+                <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=120&q=60"><div><div class="t-title">Juara 3 MTQ Putra</div><div class="t-sub">07 Nov 2024 · Kegiatan</div></div></div></td><td><span class="badge pub">● Published</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="go('berita')">Edit</button></div></td></tr>
+                <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=120&q=60"><div><div class="t-title">Kegiatan MPLS Siswa Baru</div><div class="t-sub">25 Okt 2024 · Kegiatan</div></div></div></td><td><span class="badge pub">● Published</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="go('berita')">Edit</button></div></td></tr>
+                <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=120&q=60"><div><div class="t-title">Program Tahfidz &amp; Pembiasaan Ibadah</div><div class="t-sub">12 Sep 2024 · Program</div></div></div></td><td><span class="badge pub">● Published</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="go('berita')">Edit</button></div></td></tr>
+                <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=120&q=60"><div><div class="t-title">Outbond Kelas 5 Taman Pintar</div><div class="t-sub">28 Agu 2024 · Kegiatan</div></div></div></td><td><span class="badge draft">○ Draft</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="go('berita')">Edit</button></div></td></tr>
+                <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=120&q=60"><div><div class="t-title">Penambahan Buku Perpustakaan</div><div class="t-sub">15 Agu 2024 · Fasilitas</div></div></div></td><td><span class="badge draft">○ Draft</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="go('berita')">Edit</button></div></td></tr>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <h3>Aksi Cepat</h3>
+              <p class="card-sub">Tugas umum admin sekolah</p>
+              <div style="display:grid;gap:10px">
+                <button class="btn btn-ghost" style="justify-content:flex-start" onclick="go('berita')">📰 + Tulis berita baru</button>
+                <button class="btn btn-ghost" style="justify-content:flex-start" onclick="go('galeri')">🖼️ + Upload foto galeri</button>
+                <button class="btn btn-ghost" style="justify-content:flex-start" onclick="go('ppdb')">📋 Perbarui info PPDB</button>
+                <button class="btn btn-ghost" style="justify-content:flex-start" onclick="go('tampilan')">🎨 Ganti tema warna</button>
+                <button class="btn btn-ghost" style="justify-content:flex-start" onclick="go('alumni')">🎓 Unduh data alumni</button>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Kesehatan Website</h3>
+              <p class="card-sub">Status layanan otomatis</p>
+              <div style="display:grid;gap:10px">
+                <div class="switch-row"><div><div class="sw-title">Uptime website</div><div class="sw-desc">99,9% — 30 hari terakhir</div></div><span class="badge pub">● Normal</span></div>
+                <div class="switch-row"><div><div class="sw-title">Backup database</div><div class="sw-desc">Terakhir: hari ini 02.00 WIB</div></div><span class="badge pub">● Sukses</span></div>
+                <div class="switch-row"><div><div class="sw-title">Sertifikat SSL</div><div class="sw-desc">Berlaku hingga 20 Agu 2026</div></div><span class="badge pub">● Aktif</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== BERITA ========== -->
+      <div class="page" id="page-berita">
+        <div class="page-head">
+          <div><h1>Kelola Berita &amp; Prestasi</h1><p>Tulis, edit, dan publikasikan berita sekolah.</p></div>
+          <button class="btn btn-gold" onclick="showEditor('berita')">＋ Tulis Berita</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <tr><th>Judul</th><th>Kategori</th><th>Tanggal</th><th>Status</th><th style="text-align:right">Aksi</th></tr>
+              <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=120&q=60"><div class="t-title">Juara 3 Musabaqah Tilawatil Qur'an Putra</div></div></td><td>Prestasi</td><td>07 Nov 2024</td><td><span class="badge pub">● Published</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showEditor('berita')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+              <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=120&q=60"><div class="t-title">Kegiatan MPLS &amp; Orientasi Siswa Baru</div></div></td><td>Kegiatan</td><td>25 Okt 2024</td><td><span class="badge pub">● Published</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showEditor('berita')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+              <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=120&q=60"><div class="t-title">Program Tahfidz &amp; Pembiasaan Ibadah Harian</div></div></td><td>Program</td><td>12 Sep 2024</td><td><span class="badge pub">● Published</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showEditor('berita')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+              <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=120&q=60"><div class="t-title">Outbond Kelas 5 Taman Pintar</div></div></td><td>Kegiatan</td><td>28 Agu 2024</td><td><span class="badge draft">○ Draft</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showEditor('berita')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+              <tr><td><div class="t-cell"><img class="t-thumb" src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=120&q=60"><div class="t-title">Penambahan Buku Perpustakaan</div></div></td><td>Fasilitas</td><td>15 Agu 2024</td><td><span class="badge draft">○ Draft</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showEditor('berita')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="card" id="beritaEditor" style="display:none">
+          <h3>✏️ Editor Berita</h3>
+          <p class="card-sub">Semua perubahan langsung tampil di website setelah tombol "Terbitkan".</p>
+          <div class="form-grid">
+            <div class="form-group full"><label>Judul berita <span class="req">*</span></label><input type="text" value="Juara 3 Musabaqah Tilawatil Qur'an Putra"></div>
+            <div class="form-group"><label>Kategori</label><select><option>Prestasi</option><option>Kegiatan</option><option>Program</option><option>Fasilitas</option><option>Pengumuman</option></select></div>
+            <div class="form-group"><label>Tanggal</label><input type="date" value="2024-11-07"></div>
+            <div class="form-group"><label>Gambar utama</label><input type="text" value="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=70"></div>
+            <div class="form-group"><label>Status</label><select><option>Published</option><option>Draft</option></select></div>
+            <div class="form-group full"><label>Isi berita <span class="req">*</span></label><textarea>Alhamdulillah, siswa SD Muhammadiyah Pakel berhasil meraih Juara 3 Musabaqah Tilawatil Qur'an Putra. Semoga prestasi ini menjadi penyemangat bagi siswa lainnya untuk terus berlatih dan berprestasi. Terima kasih kepada pembimbing, orang tua, dan seluruh pihak yang mendukung.</textarea></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-gold" onclick="toast('✅ Berita berhasil diterbitkan!')">🚀 Terbitkan</button>
+            <button class="btn btn-ghost" onclick="toast('💾 Perubahan disimpan sebagai draft')">Simpan Draft</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('beritaEditor').style.display='none'">Batal</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== GALERI ========== -->
+      <div class="page" id="page-galeri">
+        <div class="page-head">
+          <div><h1>Galeri Foto</h1><p>Kelola foto kegiatan &amp; fasilitas sekolah.</p></div>
+          <button class="btn btn-gold" onclick="toast('📤 Upload foto berhasil ditambahkan ke antrean')">＋ Upload Foto</button>
+        </div>
+        <div class="card">
+          <div class="form-group"><label>Upload foto baru</label><div class="upload-box" onclick="toast('📤 Form upload tersedia di versi lengkap')"><b>Klik untuk pilih foto</b>JPG/PNG/WebP, maks 5 MB per foto · bisa multi-upload</div></div>
+        </div>
+        <div class="gal-grid">
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Kegiatan Belajar</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Ibadah Bersama</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Ekstrakurikuler</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Perpustakaan</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Kegiatan Seni</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1576485375217-d6a95e34d043?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Upacara &amp; Apel</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Halaman Sekolah</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+          <div class="gal-item"><img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=400&q=60" alt=""><div class="gal-overlay"><span>Kegiatan Outdoor</span><div class="gal-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit foto')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></div></div>
+        </div>
+      </div>
+
+      <!-- ========== HALAMAN ========== -->
+      <div class="page" id="page-halaman">
+        <div class="page-head">
+          <div><h1>Halaman Website</h1><p>Edit isi halaman statis seperti profil, visi misi, dan kurikulum.</p></div>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <tr><th>Halaman</th><th>Terakhir diperbarui</th><th>Status</th><th style="text-align:right">Aksi</th></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--blue-soft);display:grid;place-items:center">🏠</div><div class="t-title">Beranda</div></div></td><td>2 Agu 2026</td><td><span class="badge pub">● Live</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showPageEditor('Beranda')">Edit</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--blue-soft);display:grid;place-items:center">📖</div><div class="t-title">Sejarah Sekolah</div></div></td><td>18 Jul 2026</td><td><span class="badge pub">● Live</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showPageEditor('Sejarah Sekolah')">Edit</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--blue-soft);display:grid;place-items:center">🎯</div><div class="t-title">Visi &amp; Misi</div></div></td><td>18 Jul 2026</td><td><span class="badge pub">● Live</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showPageEditor('Visi & Misi')">Edit</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--blue-soft);display:grid;place-items:center">📚</div><div class="t-title">Kurikulum</div></div></td><td>1 Jul 2026</td><td><span class="badge pub">● Live</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showPageEditor('Kurikulum')">Edit</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--blue-soft);display:grid;place-items:center">🏫</div><div class="t-title">Fasilitas</div></div></td><td>28 Jun 2026</td><td><span class="badge pub">● Live</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showPageEditor('Fasilitas')">Edit</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--blue-soft);display:grid;place-items:center">🕌</div><div class="t-title">Perpustakaan</div></div></td><td>20 Jun 2026</td><td><span class="badge pub">● Live</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="showPageEditor('Perpustakaan')">Edit</button></div></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="card" id="pageEditor" style="display:none">
+          <h3>✏️ Edit Halaman: <span id="pageEditorName">Beranda</span></h3>
+          <p class="card-sub">Konten halaman bisa diedit dengan editor teks kaya atau mode kode.</p>
+          <div class="form-grid">
+            <div class="form-group full"><label>Judul halaman</label><input type="text" id="pageEditorTitle" value="Beranda"></div>
+            <div class="form-group full"><label>Isi halaman</label><textarea id="pageEditorBody">Tulis konten halaman di sini. Mendukung teks tebal, miring, tautan, gambar, dan tabel.</textarea></div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-gold" onclick="toast('✅ Halaman berhasil diperbarui!')">💾 Simpan Perubahan</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('pageEditor').style.display='none'">Batal</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== EKSTRAKURIKULER ========== -->
+      <div class="page" id="page-ekstra">
+        <div class="page-head">
+          <div><h1>Ekstrakurikuler</h1><p>Kelola daftar ekstrakurikuler yang tampil di website.</p></div>
+          <button class="btn btn-gold" onclick="toast('➕ Form ekstrakurikuler baru')">＋ Tambah</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <tr><th>Nama</th><th>Kategori</th><th>Jadwal</th><th>Status</th><th style="text-align:right">Aksi</th></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--blue-soft);display:grid;place-items:center">🛡️</div><div class="t-title">Tapak Suci</div></div></td><td>Kewiraan</td><td>Senin · 14.30–16.00</td><td><span class="badge pub">● Aktif</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit ekstrakurikuler')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--green-soft);display:grid;place-items:center">⚽</div><div class="t-title">Sepak Bola</div></div></td><td>Olahraga</td><td>Rabu · 15.00–16.30</td><td><span class="badge pub">● Aktif</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit ekstrakurikuler')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--gold-soft);display:grid;place-items:center">🎨</div><div class="t-title">Kaligrafi</div></div></td><td>Seni</td><td>Kamis · 14.30–15.30</td><td><span class="badge pub">● Aktif</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit ekstrakurikuler')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="t-thumb" style="background:var(--red-soft);display:grid;place-items:center">🔬</div><div class="t-title">Sains Club</div></div></td><td>Ilmiah</td><td>Jumat · 14.00–15.30</td><td><span class="badge draft">○ Nonaktif</span></td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Edit ekstrakurikuler')">Edit</button><button class="mini-btn del" onclick="toast('Fitur hapus ada di versi lengkap')">Hapus</button></div></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PPDB ========== -->
+      <div class="page" id="page-ppdb">
+        <div class="page-head">
+          <div><h1>Informasi PPDB</h1><p>Atur info pendaftaran yang tampil di halaman depan.</p></div>
+          <button class="btn btn-gold" onclick="toast('✅ Info PPDB berhasil diperbarui!')">💾 Simpan</button>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Pengaturan PPDB</h3>
+            <p class="card-sub">Teks dan jadwal pendaftaran</p>
+            <div class="form-grid">
+              <div class="form-group full"><label>Status pendaftaran</label><select><option>🔵 Dibuka</option><option>⚪ Ditutup</option><option>🟡 Menunggu gelombang 2</option></select></div>
+              <div class="form-group"><label>Gelombang 1</label><input type="text" value="1 Jan – 31 Mar 2026"></div>
+              <div class="form-group"><label>Gelombang 2</label><input type="text" value="1 Apr – 30 Jun 2026"></div>
+              <div class="form-group full"><label>Nomor CP PPDB (WhatsApp)</label><input type="text" value="0815-6863-906"></div>
+              <div class="form-group full"><label>Pesan banner PPDB</label><textarea>Daftarkan putra-putri terbaik Anda untuk bergabung menjadi bagian dari keluarga besar SD Muhammadiyah Pakel. Kuota terbatas!</textarea></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Formulir Pendaftaran Online</h3>
+            <p class="card-sub">Field yang diisi calon wali murid</p>
+            <div class="switch-row"><div><div class="sw-title">Nama calon siswa</div><div class="sw-desc">Wajib diisi</div></div><div class="switch on"></div></div>
+            <div class="switch-row"><div><div class="sw-title">Tempat &amp; tanggal lahir</div><div class="sw-desc">Wajib diisi</div></div><div class="switch on"></div></div>
+            <div class="switch-row"><div><div class="sw-title">Nama orang tua / wali</div><div class="sw-desc">Wajib diisi</div></div><div class="switch on"></div></div>
+            <div class="switch-row"><div><div class="sw-title">Nomor WhatsApp orang tua</div><div class="sw-desc">Wajib diisi</div></div><div class="switch on"></div></div>
+            <div class="switch-row"><div><div class="sw-title">Upload foto siswa</div><div class="sw-desc">Opsional</div></div><div class="switch"></div></div>
+            <div class="switch-row"><div><div class="sw-title">Upload akta kelahiran</div><div class="sw-desc">Wajib saat verifikasi</div></div><div class="switch on"></div></div>
+            <div class="switch-row"><div><div class="sw-title">Surat keterangan sehat</div><div class="sw-desc">Opsional</div></div><div class="switch"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== ALUMNI ========== -->
+      <div class="page" id="page-alumni">
+        <div class="page-head">
+          <div><h1>Pendataan Alumni</h1><p>Data alumni yang mengisi formulir pendataan.</p></div>
+          <button class="btn btn-gold" onclick="toast('📥 Data alumni diekspor ke Excel')">⬇️ Export Excel</button>
+        </div>
+        <div class="stats" style="grid-template-columns:repeat(3,1fr)">
+          <div class="stat-card"><div class="stat-ic" style="background:var(--blue-soft)">🎓</div><div><b>312</b><span>Total Alumni Terdata</span></div></div>
+          <div class="stat-card"><div class="stat-ic" style="background:var(--green-soft)">🆕</div><div><b>18</b><span>Pengisian bulan ini</span></div></div>
+          <div class="stat-card"><div class="stat-ic" style="background:var(--gold-soft)">🏫</div><div><b>7</b><span>Angkatan Terdata</span></div></div>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <tr><th>Nama</th><th>Angkatan</th><th>Sekolah Lanjutan</th><th>Kontak</th><th style="text-align:right">Aksi</th></tr>
+              <tr><td><div class="t-cell"><div class="avatar" style="width:34px;height:34px;font-size:.7rem">AR</div><div class="t-title">Ahmad Rizki</div></div></td><td>2015</td><td>SMP Muhammadiyah 1 Yogyakarta</td><td>0812-3456-7890</td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Detail alumni')">Lihat</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="avatar" style="width:34px;height:34px;font-size:.7rem;background:linear-gradient(135deg,#8B5CF6,#6D28D9)">SN</div><div class="t-title">Siti Nurhaliza</div></div></td><td>2018</td><td>SMP Negeri 8 Yogyakarta</td><td>0857-1122-3344</td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Detail alumni')">Lihat</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="avatar" style="width:34px;height:34px;font-size:.7rem;background:linear-gradient(135deg,#0E9F6E,#0B7A55)">BP</div><div class="t-title">Bagas Prasetyo</div></div></td><td>2018</td><td>MTsN 2 Yogyakarta</td><td>0896-5566-7788</td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Detail alumni')">Lihat</button></div></td></tr>
+              <tr><td><div class="t-cell"><div class="avatar" style="width:34px;height:34px;font-size:.7rem;background:linear-gradient(135deg,#C9A227,#9A7B10)">DW</div><div class="t-title">Dewi Lestari</div></div></td><td>2020</td><td>SMP Muhammadiyah 3 Yogyakarta</td><td>0821-9988-7766</td><td><div class="row-actions"><button class="mini-btn edit" onclick="toast('✏️ Detail alumni')">Lihat</button></div></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== TAMPILAN ========== -->
+      <div class="page" id="page-tampilan">
+        <div class="page-head">
+          <div><h1>Tampilan Website</h1><p>Ubah tema warna, teks utama, dan logo tanpa sentuh kode.</p></div>
+          <button class="btn btn-gold" onclick="toast('✅ Tampilan berhasil diperbarui & disimpan!')">💾 Simpan Perubahan</button>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Tema Warna</h3>
+            <p class="card-sub">Pilih warna identitas sekolah</p>
+            <div class="theme-grid">
+              <div class="theme-opt sel" onclick="selectTheme(this)">
+                <div class="theme-swatches"><span class="sw" style="background:#0B3D91"></span><span class="sw" style="background:#C9A227"></span></div>
+                <span>Navy &amp; Emas</span>
+              </div>
+              <div class="theme-opt" onclick="selectTheme(this)">
+                <div class="theme-swatches"><span class="sw" style="background:#0E9F6E"></span><span class="sw" style="background:#1450B8"></span></div>
+                <span>Hijau &amp; Biru</span>
+              </div>
+              <div class="theme-opt" onclick="selectTheme(this)">
+                <div class="theme-swatches"><span class="sw" style="background:#7C3AED"></span><span class="sw" style="background:#F59E0B"></span></div>
+                <span>Ungu &amp; Oranye</span>
+              </div>
+              <div class="theme-opt" onclick="selectTheme(this)">
+                <div class="theme-swatches"><span class="sw" style="background:#DC2626"></span><span class="sw" style="background:#0B3D91"></span></div>
+                <span>Merah &amp; Navy</span>
+              </div>
+              <div class="theme-opt" onclick="selectTheme(this)">
+                <div class="theme-swatches"><span class="sw" style="background:#0F766E"></span><span class="sw" style="background:#E11D48"></span></div>
+                <span>Teal &amp; Pink</span>
+              </div>
+              <div class="theme-opt" onclick="selectTheme(this)">
+                <div class="theme-swatches"><span class="sw" style="background:#1E293B"></span><span class="sw" style="background:#F59E0B"></span></div>
+                <span>Dark &amp; Emas</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Teks Utama (Hero)</h3>
+            <p class="card-sub">Tampil di bagian paling atas website</p>
+            <div class="form-group"><label>Judul utama</label><input type="text" value="Generasi Islam Masa Depan, Berakhlak Mulia, Modern & Kreatif"></div>
+            <div class="form-group"><label>Sub-judul</label><textarea style="min-height:70px">SD Muhammadiyah Pakel Program Plus — satu-satunya SD Muhammadiyah di Kota Yogyakarta yang menerapkan sistem Fullday School sejak tahun 1998.</textarea></div>
+            <div class="form-group"><label>Teks tombol PPDB</label><input type="text" value="Daftar PPDB Sekarang"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Logo &amp; Identitas</h3>
+          <p class="card-sub">Logo sekolah dan nama singkat</p>
+          <div class="form-grid">
+            <div class="form-group"><label>Nama sekolah</label><input type="text" value="SD Muhammadiyah Pakel"></div>
+            <div class="form-group"><label>Tagline</label><input type="text" value="Program Plus · Yogyakarta"></div>
+            <div class="form-group full"><label>Ganti logo</label><div class="upload-box" onclick="toast('📤 Upload logo tersedia di versi lengkap')"><b>Klik untuk upload logo</b>PNG/SVG dengan latar transparan, maks 2 MB</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Pengaturan Halaman</h3>
+          <div class="switch-row"><div><div class="sw-title">Tampilkan banner PPDB</div><div class="sw-desc">Banner emas di halaman depan</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="switch-row"><div><div class="sw-title">Tampilkan bagian alumni</div><div class="sw-desc">Form pendataan alumni di footer</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="switch-row"><div><div class="sw-title">Mode terang / gelap otomatis</div><div class="sw-desc">Ikuti pengaturan perangkat pengunjung</div></div><div class="switch" onclick="this.classList.toggle('on')"></div></div>
+          <div class="switch-row"><div><div class="sw-title">Animasi scroll</div><div class="sw-desc">Efek muncul halus saat scroll</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+        </div>
+      </div>
+
+      <!-- ========== PENGATURAN ========== -->
+      <div class="page" id="page-pengaturan">
+        <div class="page-head">
+          <div><h1>Pengaturan</h1><p>Info kontak, media sosial, dan keamanan akun.</p></div>
+          <button class="btn btn-gold" onclick="toast('✅ Pengaturan berhasil disimpan!')">💾 Simpan</button>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Kontak Sekolah</h3>
+            <p class="card-sub">Tampil di footer &amp; halaman kontak</p>
+            <div class="form-group"><label>Alamat</label><input type="text" value="Jl. Pakel Baru Sorosutan No.40, Umbulharjo, Yogyakarta 55162"></div>
+            <div class="form-group"><label>Telepon / WhatsApp</label><input type="text" value="0815-6863-906"></div>
+            <div class="form-group"><label>Email</label><input type="text" value="sdmuhpakel@gmail.com"></div>
+            <div class="form-group"><label>Tautan Google Maps</label><input type="text" value="https://maps.google.com/?q=SD+Muhammadiyah+Pakel"></div>
+          </div>
+          <div class="card">
+            <h3>Media Sosial</h3>
+            <p class="card-sub">Tautan yang muncul di website</p>
+            <div class="form-group"><label>Facebook</label><input type="text" placeholder="https://facebook.com/..."></div>
+            <div class="form-group"><label>Instagram</label><input type="text" value="https://instagram.com/sdmuhpakel"></div>
+            <div class="form-group"><label>YouTube</label><input type="text" placeholder="https://youtube.com/..."></div>
+            <div class="form-group"><label>TikTok</label><input type="text" placeholder="https://tiktok.com/..."></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Keamanan &amp; Data</h3>
+          <div class="switch-row"><div><div class="sw-title">Backup otomatis harian</div><div class="sw-desc">Database &amp; foto di-backup tiap pukul 02.00 WIB</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="switch-row"><div><div class="sw-title">Notifikasi email</div><div class="sw-desc">Info formulir alumni baru &amp; pesan kontak</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+          <div class="switch-row"><div><div class="sw-title">Login dua langkah (2FA)</div><div class="sw-desc">Keamanan ekstra untuk akun admin</div></div><div class="switch" onclick="this.classList.toggle('on')"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="tic">⚡</span><span id="toastMsg">Berhasil</span></div>
+
+<script>
+function doLogin(){
+  document.getElementById('loginScreen').classList.remove('show');
+  toast('👋 Selamat datang, Admin! Ini demo panel.');
+}
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+}
+const titles={
+  dashboard:'Dashboard',berita:'Berita & Prestasi',galeri:'Galeri',
+  halaman:'Halaman',ekstra:'Ekstrakurikuler',ppdb:'PPDB',alumni:'Pendataan Alumni',
+  tampilan:'Tampilan Website',pengaturan:'Pengaturan'
+};
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    n.classList.toggle('active',n.dataset.page===page);
+  });
+  document.getElementById('topbarTitle').textContent=titles[page]||'Dashboard';
+  document.getElementById('sidebar').classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav-item').forEach(n=>{
+  n.addEventListener('click',()=>go(n.dataset.page));
+});
+function showEditor(){
+  document.getElementById('beritaEditor').style.display='block';
+  document.getElementById('beritaEditor').scrollIntoView({behavior:'smooth'});
+}
+function showPageEditor(name){
+  document.getElementById('pageEditor').style.display='block';
+  document.getElementById('pageEditorName').textContent=name;
+  document.getElementById('pageEditorTitle').value=name;
+  document.getElementById('pageEditor').scrollIntoView({behavior:'smooth'});
+}
+function selectTheme(el){
+  document.querySelectorAll('.theme-opt').forEach(t=>t.classList.remove('sel'));
+  el.classList.add('sel');
+  toast('🎨 Tema diganti! (contoh)');
+}
+let toastTimer;
+function toast(msg){
+  document.getElementById('toastMsg').textContent=msg;
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
+}
+// Enter key on login
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('loginScreen').classList.contains('show'))doLogin();
+});
+</script>
+</body>
+</html>
