@@ -216,7 +216,7 @@ textarea{resize:vertical;min-height:110px}
       <button class="nav-item" data-page="ppdb"><span class="ic">📋</span>PPDB<span class="badge">Baru</span></button>
       <button class="nav-item" data-page="alumni"><span class="ic">🎓</span>Pendataan Alumni</button>
       <div class="nav-label">Sistem</div>
-      <button class="nav-item" data-page="tampilan"><span class="ic">🎨</span>Tampilan Website</button>
+      <button class="nav-item" data-page="tampilan"><span class="ic">🎨</span>Tampilan Website<span class="badge" style="background:var(--gold)">Custom</span></button>
       <button class="nav-item" data-page="pengaturan"><span class="ic">⚙️</span>Pengaturan</button>
     </nav>
     <div class="sidebar-foot">
@@ -474,6 +474,10 @@ textarea{resize:vertical;min-height:110px}
           <div class="card">
             <h3>Tema Warna</h3>
             <p class="card-sub">Pilih warna identitas sekolah</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+              <a href="customizer.html" class="btn btn-gold">⚡ Buka Customizer Live</a>
+              <button class="btn btn-ghost" onclick="toast('🎨 Tema diganti (contoh)')">Ganti Tema Cepat</button>
+            </div>
             <div class="theme-grid">
               <div class="theme-opt sel" onclick="selectTheme(this)">
                 <div class="theme-swatches"><span class="sw" style="background:#0B3D91"></span><span class="sw" style="background:#C9A227"></span></div>
