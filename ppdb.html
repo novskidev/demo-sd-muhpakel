@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPDB 2026/2027 — SD Muhammadiyah Pakel</title>
+<meta name="description" content="Pendaftaran Peserta Didik Baru (PPDB) SD Muhammadiyah Pakel Tahun Ajaran 2026/2027. Daftar online sekarang, kuota terbatas!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B3D91;--navy-dark:#082B66;--navy-deep:#051C45;
+  --gold:#C9A227;--gold-soft:#F5E9C8;
+  --green:#0E9F6E;--green-soft:#E7F6EF;
+  --blue-soft:#E8F0FC;--ink:#1F2937;--muted:#5B6B82;
+  --line:#E2E8F0;--bg:#F7FAFD;--white:#fff;--red:#DC2626;--red-soft:#FEE2E2;
+  --radius:16px;--shadow:0 8px 24px rgba(8,43,102,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.container{max-width:1140px;margin:0 auto;padding:0 22px}
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:0 4px 20px rgba(8,43,102,.05)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-dark));display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.05rem;flex-shrink:0}
+.brand-name{font-weight:800;color:var(--navy-dark);line-height:1.15;font-size:.98rem}
+.brand-name small{display:block;font-weight:600;color:var(--muted);font-size:.72rem}
+.menu{display:flex;align-items:center;gap:24px}
+.menu a{font-weight:600;font-size:.88rem;color:var(--ink);transition:.15s}
+.menu a:hover{color:var(--navy)}
+.menu a.active{color:var(--navy)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{width:24px;height:2.5px;background:var(--navy);border-radius:2px}
+/* BTN */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:12px;font-weight:700;font-size:.92rem;transition:.2s;border:none;cursor:pointer;font-family:inherit}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#A88314);color:#fff;box-shadow:0 6px 18px rgba(201,162,39,.35)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(201,162,39,.45)}
+.btn-navy{background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff}
+.btn-navy:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(11,61,145,.3)}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-ghost:hover{background:var(--blue-soft)}
+.btn-sm{padding:8px 16px;font-size:.8rem;border-radius:9px}
+/* HERO */
+.page-hero{background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;padding:70px 0;position:relative;overflow:hidden}
+.page-hero::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 220px at 85% 0%,rgba(201,162,39,.22),transparent 60%)}
+.page-hero .container{position:relative;z-index:1}
+.crumb{font-size:.8rem;color:#B9C9E8;margin-bottom:14px}
+.crumb a{color:var(--gold)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.kicker::before{content:"";width:26px;height:2.5px;background:var(--gold);border-radius:2px}
+.page-hero h1{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:800;line-height:1.2;margin-bottom:14px;max-width:760px}
+.page-hero p.lead{font-size:1.05rem;color:#C9D7F3;max-width:640px}
+.hero-stats{display:flex;gap:30px;margin-top:30px;flex-wrap:wrap}
+.hstat b{display:block;font-size:1.5rem;font-weight:800;color:var(--gold)}
+.hstat span{font-size:.8rem;color:#9DB4DC}
+/* STATUS PPDB */
+.status-strip{background:var(--gold-soft);border-bottom:1px solid rgba(201,162,39,.25)}
+.status-strip .container{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 22px;flex-wrap:wrap}
+.status-open{display:inline-flex;align-items:center;gap:9px;font-weight:800;color:#8a6d1a;font-size:.88rem}
+.status-open .dot{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(14,159,110,.5)}50%{box-shadow:0 0 0 6px rgba(14,159,110,0)}}
+.status-countdown{font-size:.82rem;font-weight:700;color:#8a6d1a}
+/* SECTION */
+.section{padding:72px 0}
+.section-head{text-align:center;max-width:640px;margin:0 auto 46px}
+.section-head .kicker{justify-content:center}
+.section-head h2{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:800;color:var(--navy-dark);margin-bottom:12px;line-height:1.25}
+.section-head p{color:var(--muted)}
+/* info cards */
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.info-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;text-align:center;transition:.2s;box-shadow:var(--shadow)}
+.info-card:hover{transform:translateY(-4px);border-color:var(--navy)}
+.info-icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;margin:0 auto 14px;font-size:1.5rem}
+.ic-blue{background:var(--blue-soft)}
+.ic-gold{background:var(--gold-soft)}
+.ic-green{background:var(--green-soft)}
+.ic-red{background:var(--red-soft)}
+.info-card h3{font-size:.95rem;font-weight:800;color:var(--navy-dark);margin-bottom:6px}
+.info-card p{font-size:.82rem;color:var(--muted);font-weight:600}
+/* timeline */
+.timeline{max-width:820px;margin:0 auto}
+.tl-item{display:flex;gap:20px;position:relative;padding-bottom:34px}
+.tl-item::before{content:"";position:absolute;left:23px;top:50px;bottom:0;width:2.5px;background:var(--line)}
+.tl-item:last-child::before{display:none}
+.tl-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;font-weight:800;display:grid;place-items:center;flex-shrink:0;font-size:1rem;z-index:1;box-shadow:0 4px 12px rgba(11,61,145,.3)}
+.tl-item.done .tl-num{background:linear-gradient(135deg,var(--green),#0B7A54)}
+.tl-body{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 22px;flex:1;box-shadow:var(--shadow)}
+.tl-body h3{font-size:.95rem;font-weight:800;color:var(--navy-dark);margin-bottom:4px}
+.tl-body p{font-size:.84rem;color:var(--muted)}
+.tl-body .tl-date{display:inline-block;margin-top:8px;font-size:.74rem;font-weight:800;color:var(--navy);background:var(--blue-soft);padding:4px 12px;border-radius:999px}
+/* PERSYARATAN */
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.req-item{display:flex;gap:13px;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:13px;padding:15px 17px;transition:.15s}
+.req-item:hover{border-color:var(--navy);box-shadow:var(--shadow)}
+.req-check{width:26px;height:26px;border-radius:8px;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-weight:800;flex-shrink:0;font-size:.8rem;margin-top:2px}
+.req-item b{font-size:.86rem;color:var(--ink);display:block}
+.req-item span{font-size:.78rem;color:var(--muted)}
+/* FORM */
+.form-wrap{max-width:860px;margin:0 auto;background:var(--white);border:1px solid var(--line);border-radius:20px;box-shadow:0 16px 50px rgba(8,43,102,.12);overflow:hidden}
+.form-head{background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;padding:30px 34px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.form-head h3{font-size:1.15rem;font-weight:800}
+.form-head p{font-size:.8rem;color:#C9D7F3;margin-top:4px}
+.form-head .step-pill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:7px 16px;border-radius:999px;font-size:.76rem;font-weight:700;color:var(--gold)}
+.form-body{padding:30px 34px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f-field{margin-bottom:14px}
+.f-field.full{grid-column:1/-1}
+.f-field label{display:block;font-weight:700;font-size:.8rem;color:var(--navy-dark);margin-bottom:6px}
+.f-field label .req{color:var(--red)}
+.f-field input,.f-field select,.f-field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:.9rem;color:var(--ink);outline:none;transition:.15s;background:#fff}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,61,145,.08)}
+.f-field textarea{resize:vertical;min-height:70px}
+.f-radio{display:flex;gap:20px;padding:10px 0}
+.f-radio label{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.86rem;color:var(--ink);cursor:pointer}
+.f-radio input{width:auto;accent-color:var(--navy)}
+.form-note{font-size:.76rem;color:var(--muted);background:var(--blue-soft);border-radius:10px;padding:12px 16px;margin-top:4px}
+.form-actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+/* SUCCESS */
+.success-box{display:none;text-align:center;padding:52px 30px}
+.success-box.show{display:block}
+.success-ic{width:84px;height:84px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:2.4rem;margin:0 auto 20px;animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.success-box h3{font-size:1.4rem;font-weight:800;color:var(--navy-dark);margin-bottom:8px}
+.success-box p{color:var(--muted);max-width:440px;margin:0 auto 20px}
+.no-pend{font-size:1.9rem;font-weight:800;color:var(--navy);letter-spacing:.02em;margin-bottom:6px}
+.no-pend small{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.pend-card{display:inline-block;background:var(--gold-soft);border:2px dashed var(--gold);border-radius:14px;padding:18px 40px;margin-bottom:18px}
+/* FAQ */
+.faq{max-width:760px;margin:0 auto}
+.faq-item{background:var(--white);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:17px 20px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:700;color:var(--ink);text-align:left}
+.faq-q:hover{color:var(--navy)}
+.faq-q .arr{transition:.2s;color:var(--muted);flex-shrink:0}
+.faq-item.open .faq-q .arr{transform:rotate(180deg);color:var(--navy)}
+.faq-a{display:none;padding:0 20px 18px;font-size:.84rem;color:var(--muted)}
+.faq-item.open .faq-a{display:block}
+/* FOOTER */
+footer{background:var(--navy-deep);color:#C9D7F3;padding:64px 0 0;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:36px;padding-bottom:44px}
+.footer h4{color:#fff;font-size:.92rem;font-weight:800;margin-bottom:16px}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:9px}
+.footer ul a{font-size:.84rem;color:#9DB4DC;transition:.15s}
+.footer ul a:hover{color:var(--gold)}
+.footer-desc{font-size:.86rem;color:#9DB4DC;margin-top:14px;line-height:1.7}
+.footer-contact li{display:flex;gap:10px;font-size:.84rem;align-items:flex-start}
+.footer-contact .ic{color:var(--gold);flex-shrink:0}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.8rem}
+.footer-bottom a{color:var(--gold)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .menu{display:none;position:fixed;inset:74px 0 auto 0;background:#fff;flex-direction:column;gap:0;padding:10px 22px 22px;border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,.1)}
+  .menu.open{display:flex}
+  .menu a{padding:13px 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .hamburger{display:flex}
+  .info-grid{grid-template-columns:1fr 1fr}
+  .req-grid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:20px}
+}
+@media(max-width:520px){
+  .info-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .form-body,.form-head{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand">
+      <div class="logo">SD</div>
+      <div class="brand-name">SD Muhammadiyah Pakel<small>Program Plus · Yogyakarta</small></div>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="index.html">Beranda</a>
+      <a href="index.html#tentang">Profil</a>
+      <a href="index.html#program">Program</a>
+      <a href="index.html#berita">Berita</a>
+      <a href="index.html#galeri">Galeri</a>
+      <a href="index.html#ekstra">Ekstrakurikuler</a>
+      <a href="index.html#prestasi">Prestasi</a>
+      <a href="index.html#alumni">Alumni</a>
+      <a href="ppdb.html" class="btn btn-gold btn-sm">PPDB 2026/2027</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="crumb"><a href="index.html">Beranda</a> / PPDB</div>
+    <span class="kicker">Penerimaan Peserta Didik Baru</span>
+    <h1>PPDB Tahun Ajaran 2026/2027 — Bergabunglah dengan Keluarga Besar SD Muhammadiyah Pakel</h1>
+    <p class="lead">Satu-satunya SD Muhammadiyah di Kota Yogyakarta dengan sistem Fullday School sejak 1998. Mendidik generasi Islam yang berakhlak mulia, modern, dan kreatif.</p>
+    <div class="hero-stats">
+      <div class="hstat"><b>1998</b><span>Fullday School sejak</span></div>
+      <div class="hstat"><b>50+</b><span>Guru &amp; tenaga pendidik</span></div>
+      <div class="hstat"><b>15</b><span>Ekstrakurikuler</span></div>
+      <div class="hstat"><b>32</b><span>Kuota kelas 1 (2 rombel)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<div class="status-strip">
+  <div class="container">
+    <span class="status-open"><span class="dot"></span> Gelombang 2 — Pendaftaran DIBUKA</span>
+    <span class="status-countdown">⏳ Kuota tersisa: <b style="color:#8a6d1a">14 dari 32</b> · Tutup 30 Juni 2026</span>
+  </div>
+</div>
+
+<!-- INFO CARDS -->
+<section class="section" id="info">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Info Pendaftaran</span>
+      <h2>Alur &amp; Ketentuan Pendaftaran</h2>
+      <p>Semua informasi penting pendaftaran dalam satu tempat — mudah dipahami orang tua.</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card"><div class="info-icon ic-blue">📅</div><h3>Gelombang 2</h3><p>1 Mei – 30 Juni 2026</p></div>
+      <div class="info-card"><div class="info-icon ic-gold">💰</div><h3>Biaya Pendaftaran</h3><p>Rp 100.000 (formulir)</p></div>
+      <div class="info-card"><div class="info-icon ic-green">👶</div><h3>Usia Minimal</h3><p>6 tahun per 1 Juli 2026</p></div>
+      <div class="info-card"><div class="info-icon ic-red">📋</div><h3>Kuota</h3><p>32 siswa / 2 rombel</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section" id="alur" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Alur Pendaftaran</span>
+      <h2>4 Langkah Mudah Daftar</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="tl-num">✓</div>
+        <div class="tl-body">
+          <h3>Isi Formulir Online / Ambil Formulir</h3>
+          <p>Isi formulir pendaftaran online di halaman ini, atau ambil formulir langsung di TU sekolah.</p>
+          <span class="tl-date">1 Mei – 30 Juni 2026</span>
+        </div>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-num">2</div>
+        <div class="tl-body">
+          <h3>Lengkapi Berkas &amp; Serahkan</h3>
+          <p>Serahkan berkas persyaratan ke panitia PPDB di sekolah atau upload melalui formulir.</p>
+          <span class="tl-date">Menyusul berkas</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num">3</div>
+        <div class="tl-body">
+          <h3>Verifikasi &amp; Pengumuman</h3>
+          <p>Panitia memverifikasi berkas. Pengumuman hasil seleksi via website &amp; WhatsApp orang tua.</p>
+          <span class="tl-date">1 Juli 2026</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num">4</div>
+        <div class="tl-body">
+          <h3>Daftar Ulang &amp; MPLS</h3>
+          <p>Calon siswa yang diterima melakukan daftar ulang, lalu mengikuti MPLS (Masa Pengenalan Lingkungan Sekolah).</p>
+          <span class="tl-date">6–11 Juli 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYARAT -->
+<section class="section" id="syarat" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Persyaratan</span>
+      <h2>Berkas yang Harus Disiapkan</h2>
+      <p>Persiapkan dari sekarang — lengkapi saat pendaftaran.</p>
+    </div>
+    <div class="req-grid">
+      <div class="req-item"><div class="req-check">✓</div><div><b>Akta Kelahiran</b><span>Fotokopi 2 lembar (dilegalisir)</span></div></div>
+      <div class="req-item"><div class="req-check">✓</div><div><b>Kartu Keluarga (KK)</b><span>Fotokopi 2 lembar</span></div></div>
+      <div class="req-item"><div class="req-check">✓</div><div><b>KTP Orang Tua/Wali</b><span>Fotokopi 2 lembar</span></div></div>
+      <div class="req-item"><div class="req-check">✓</div><div><b>Pas Foto 3×4</b><span>4 lembar (background merah)</span></div></div>
+      <div class="req-item"><div class="req-check">✓</div><div><b>Ijazah / SKL TK/RA</b><span>Fotokopi 2 lembar</span></div></div>
+      <div class="req-item"><div class="req-check">✓</div><div><b>Rapor TK/RA</b><span>Fotokopi semester 1 &amp; 2</span></div></div>
+      <div class="req-item"><div class="req-check">✓</div><div><b>Surat Keterangan Sehat</b><span>Dari puskesmas / dokter</span></div></div>
+      <div class="req-item"><div class="req-check">✓</div><div><b>Bukti Transfer Biaya Formulir</b><span>Rp 100.000 ke rekening panitia</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="section" id="daftar">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Formulir Online</span>
+      <h2>Daftar Sekarang — Gratis, Tanpa Antre</h2>
+      <p>Isi formulir di bawah. Tim panitia akan menghubungi Anda maksimal 1×24 jam.</p>
+    </div>
+    <div class="form-wrap">
+      <div class="form-head">
+        <div>
+          <h3>Formulir Pendaftaran Siswa Baru</h3>
+          <p>PPDB 2026/2027 · SD Muhammadiyah Pakel</p>
+        </div>
+        <span class="step-pill">Gelombang 2 · 1 Mei – 30 Juni 2026</span>
+      </div>
+      <div class="form-body">
+        <!-- FORM -->
+        <form id="ppdbForm" onsubmit="return submitForm(event)">
+          <div class="f-grid">
+            <div class="f-field full">
+              <label>Nama Lengkap Calon Siswa <span class="req">*</span></label>
+              <input type="text" id="fNama" required placeholder="Nama lengkap sesuai akta">
+            </div>
+            <div class="f-field">
+              <label>Tempat Lahir <span class="req">*</span></label>
+              <input type="text" id="fTempat" required placeholder="Kota/kabupaten">
+            </div>
+            <div class="f-field">
+              <label>Tanggal Lahir <span class="req">*</span></label>
+              <input type="date" id="fTgl" required>
+            </div>
+            <div class="f-field full">
+              <label>Jenis Kelamin <span class="req">*</span></label>
+              <div class="f-radio">
+                <label><input type="radio" name="jk" value="Laki-laki" checked> 👦 Laki-laki</label>
+                <label><input type="radio" name="jk" value="Perempuan"> 👧 Perempuan</label>
+              </div>
+            </div>
+            <div class="f-field">
+              <label>Nama Orang Tua / Wali <span class="req">*</span></label>
+              <input type="text" id="fOrtu" required placeholder="Nama ayah/ibu/wali">
+            </div>
+            <div class="f-field">
+              <label>No. WhatsApp Orang Tua <span class="req">*</span></label>
+              <input type="tel" id="fWa" required placeholder="08xxxxxxxxxx">
+            </div>
+            <div class="f-field">
+              <label>Email Orang Tua (opsional)</label>
+              <input type="email" id="fEmail" placeholder="email@contoh.com">
+            </div>
+            <div class="f-field">
+              <label>Asal TK/RA <span class="req">*</span></label>
+              <input type="text" id="fTk" required placeholder="Nama TK/RA asal">
+            </div>
+            <div class="f-field full">
+              <label>Alamat Lengkap <span class="req">*</span></label>
+              <textarea id="fAlamat" required placeholder="Jalan, RT/RW, kelurahan, kecamatan, kota"></textarea>
+            </div>
+          </div>
+          <div class="form-note">🔒 Data Anda aman &amp; hanya digunakan untuk keperluan pendaftaran. Panitia akan menghubungi via WhatsApp.</div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-gold">🚀 Kirim Pendaftaran</button>
+            <button type="reset" class="btn btn-ghost" onclick="resetForm()">Reset Formulir</button>
+          </div>
+        </form>
+        <!-- SUCCESS -->
+        <div class="success-box" id="successBox">
+          <div class="success-ic">✅</div>
+          <h3>Pendaftaran Berhasil Dikirim!</h3>
+          <p>Terima kasih telah mendaftar. Simpan nomor pendaftaran Anda di bawah ini.</p>
+          <div class="pend-card">
+            <small>NO. PENDAFTARAN</small>
+            <div class="no-pend" id="noPend">SDMP-2026-0001</div>
+          </div>
+          <p style="font-size:.8rem;color:var(--muted)">Panitia PPDB akan menghubungi Anda via WhatsApp maksimal 1×24 jam untuk verifikasi berkas.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px">
+            <a href="https://wa.me/628156863906?text=Halo%20panitia%20PPDB%2C%20saya%20baru%20saja%20mendaftar%20online" target="_blank" class="btn btn-navy">💬 Hubungi Panitia via WA</a>
+            <button class="btn btn-ghost" onclick="resetForm()">Daftarkan Anak Lain</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">FAQ</span>
+      <h2>Pertanyaan yang Sering Diajukan</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="toggleFaq(this)">Apakah ada tes seleksi masuk? <span class="arr">▼</span></button>
+        <div class="faq-a">Tidak ada tes tulis. Seleksi berdasarkan kelengkapan berkas, kuota, dan urutan pendaftaran. Anak yang berkebutuhan khusus tetap kami layani.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Apakah ada jadwal kunjungan sekolah (school tour)? <span class="arr">▼</span></button>
+        <div class="faq-a">Ya. Setiap Sabtu pagi (09.00–11.00) selama masa PPDB, orang tua dapat berkunjung dan melihat langsung fasilitas sekolah. Daftar kunjungan via WhatsApp panitia.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Bagaimana sistem Fullday School di SD Muhammadiyah Pakel? <span class="arr">▼</span></button>
+        <div class="faq-a">Sekolah berlangsung pukul 07.00–15.30 dengan pendampingan guru, program tahfidz, pembiasaan ibadah, makan siang sehat, dan waktu belajar yang terstruktur. Orang tua tidak perlu les tambahan di luar.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Apakah tersedia antar jemput? <span class="arr">▼</span></button>
+        <div class="faq-a">Tersedia layanan antar jemput dengan rute dalam kota Yogyakarta &amp; sekitarnya (Sleman, Bantul). Biaya menyesuaikan rute.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Bagaimana cara pembayaran SPP? <span class="arr">▼</span></button>
+        <div class="faq-a">Pembayaran SPP melalui transfer bank, QRIS, atau tunai di bagian keuangan. Sistem pembayaran online akan kami umumkan setelah tahun ajaran dimulai.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Apakah ada beasiswa / keringanan biaya? <span class="arr">▼</span></button>
+        <div class="faq-a">Ada. Beasiswa tahfidz dan keringanan biaya bagi keluarga kurang mampu (dengan verifikasi). Informasi selengkapnya hubungi panitia PPDB.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK PANITIA -->
+<section class="section" id="kontak">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Kontak Panitia</span>
+      <h2>Masih Ada Pertanyaan?</h2>
+      <p>Tim panitia PPDB siap membantu setiap hari Senin–Sabtu, 08.00–14.00 WIB.</p>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/628156863906?text=Halo%20panitia%20PPDB%20SD%20Muhammadiyah%20Pakel" target="_blank" class="btn btn-navy">💬 WhatsApp: 0815-6863-906</a>
+      <a href="tel:+62274827873" class="btn btn-ghost">📞 Telepon: (0274) 827873</a>
+      <a href="mailto:sdmuhpakel@gmail.com" class="btn btn-ghost">✉️ sdmuhpakel@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:8px">
+          <div class="logo">SD</div>
+          <div class="brand-name" style="color:#fff">SD Muhammadiyah Pakel<small style="color:#9DB4DC">Program Plus · Yogyakarta</small></div>
+        </div>
+        <p class="footer-desc">Mewujudkan generasi Islam masa depan yang berakhlak mulia, modern, dan kreatif melalui pendidikan yang menyeimbangkan ilmu umum dan agama.</p>
+      </div>
+      <div>
+        <h4>Menu Utama</h4>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="index.html#tentang">Profil Sekolah</a></li>
+          <li><a href="index.html#program">Program</a></li>
+          <li><a href="index.html#berita">Berita</a></li>
+          <li><a href="index.html#galeri">Galeri</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informasi</h4>
+        <ul>
+          <li><a href="ppdb.html">Info PPDB</a></li>
+          <li><a href="index.html#ekstra">Ekstrakurikuler</a></li>
+          <li><a href="index.html#prestasi">Prestasi</a></li>
+          <li><a href="index.html#alumni">Alumni</a></li>
+          <li><a href="index.html#kontak">Kontak</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontak Kami</h4>
+        <ul class="footer-contact">
+          <li><span class="ic">📍</span><span>Jl. Pakel Baru Sorosutan No.40, Umbulharjo, Yogyakarta 55162</span></li>
+          <li><span class="ic">📞</span><span>(0274) 827873</span></li>
+          <li><span class="ic">✉️</span><span>sdmuhpakel@gmail.com</span></li>
+          <li><span class="ic">💬</span><span>0815-6863-906 (WhatsApp)</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SD Muhammadiyah Pakel. All rights reserved.</span>
+      <span>Dibuat dengan ❤️ oleh <a href="#">NovskiDev</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hamburger
+document.getElementById('hamburger').addEventListener('click',function(){
+  document.getElementById('menu').classList.toggle('open');
+});
+// FAQ
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  item.classList.toggle('open');
+}
+// FORM
+function submitForm(e){
+  e.preventDefault();
+  const nama=document.getElementById('fNama').value.trim();
+  if(!nama)return false;
+  // generate no pendaftaran
+  const num=Math.floor(1000+Math.random()*9000);
+  document.getElementById('noPend').textContent='SDMP-2026-'+num;
+  document.getElementById('ppdbForm').style.display='none';
+  document.getElementById('successBox').classList.add('show');
+  document.getElementById('successBox').scrollIntoView({behavior:'smooth',block:'center'});
+  return false;
+}
+function resetForm(){
+  document.getElementById('ppdbForm').reset();
+  document.getElementById('ppdbForm').style.display='block';
+  document.getElementById('successBox').classList.remove('show');
+}
+</script>
+</body>
+</html>
