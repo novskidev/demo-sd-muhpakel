@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD Muhammadiyah Pakel — Generasi Islam Masa Depan</title>
+<meta name="description" content="SD Muhammadiyah Pakel Program Plus Yogyakarta. Sekolah dasar Islam fullday sejak 1998 dengan kurikulum nasional, Muhammadiyah, dan program plus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy:#0B3D91;
+  --navy-dark:#082B66;
+  --navy-deep:#051C45;
+  --gold:#C9A227;
+  --gold-soft:#F5E9C8;
+  --green:#0E9F6E;
+  --green-soft:#E7F6EF;
+  --blue-soft:#E8F0FC;
+  --ink:#1F2937;
+  --muted:#5B6B82;
+  --line:#E2E8F0;
+  --bg:#F7FAFD;
+  --white:#FFFFFF;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(8,43,102,.10);
+  --shadow-lg:0 24px 60px rgba(8,43,102,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{max-width:1140px;margin:0 auto;padding:0 22px}
+.section{padding:76px 0}
+.section-alt{background:var(--white)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.kicker::before{content:"";width:26px;height:2px;background:var(--gold)}
+h2.title{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;color:var(--navy-dark);line-height:1.2;margin-bottom:14px}
+.sub{color:var(--muted);max-width:640px;margin-bottom:38px}
+.sub.center{margin-left:auto;margin-right:auto;text-align:center}
+.center{text-align:center}
+/* ============ TOP BAR ============ */
+.topbar{background:var(--navy-deep);color:#CBD8F0;font-size:.82rem;padding:7px 0}
+.topbar .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.topbar span{display:inline-flex;align-items:center;gap:6px}
+/* ============ NAV ============ */
+header.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:0 4px 20px rgba(8,43,102,.05)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-dark));display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.05rem;flex-shrink:0}
+.brand-name{font-weight:800;color:var(--navy-dark);line-height:1.15;font-size:.98rem}
+.brand-name small{display:block;font-weight:600;color:var(--muted);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+nav.menu{display:flex;gap:4px;align-items:center}
+nav.menu a{padding:9px 13px;border-radius:9px;font-weight:600;font-size:.9rem;color:var(--ink);transition:.2s}
+nav.menu a:hover{background:var(--blue-soft);color:var(--navy)}
+nav.menu a.active{color:var(--navy);background:var(--blue-soft)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;font-weight:700;padding:12px 24px;border-radius:999px;font-size:.92rem;transition:.25s;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#A88314);color:#fff}
+.btn-ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.btn-ghost:hover{background:var(--blue-soft)}
+.btn-sm{padding:8px 16px;font-size:.82rem}
+.hamburger{display:none;background:none;border:none;cursor:pointer;width:42px;height:42px;border-radius:10px;place-items:center}
+.hamburger span{display:block;width:22px;height:2.5px;background:var(--navy-dark);margin:4px auto;border-radius:2px;transition:.25s}
+/* ============ HERO ============ */
+.hero{position:relative;background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#1450B8 100%);color:#fff;overflow:hidden;padding:88px 0 96px}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(600px 300px at 85% 20%,rgba(201,162,39,.28),transparent 60%),
+  radial-gradient(500px 320px at 10% 90%,rgba(14,159,110,.22),transparent 60%),
+  url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.06'%3E%3Cpath d='M40 8l6 14 14 6-14 6-6 14-6-14-14-6 14-6z'/%3E%3C/g%3E%3C/svg%3E")}
+.hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:8px 16px;border-radius:999px;font-size:.8rem;font-weight:600;margin-bottom:22px;backdrop-filter:blur(4px)}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.6)}50%{box-shadow:0 0 0 8px rgba(201,162,39,0)}}
+.hero h1{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;line-height:1.18;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{color:#D6E2F8;max-width:520px;font-size:1.05rem;margin-bottom:28px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-quote{margin-top:34px;padding:18px 22px;border-left:3px solid var(--gold);background:rgba(255,255,255,.07);border-radius:0 14px 14px 0;font-family:'Amiri',serif;font-size:1.12rem;color:#F3E9C8;max-width:520px}
+.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:26px;backdrop-filter:blur(8px)}
+.hero-card h3{font-size:1.02rem;font-weight:700;color:var(--gold-soft);margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase;font-size:.8rem}
+.stat{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px dashed rgba(255,255,255,.16);font-size:.92rem}
+.stat:last-child{border-bottom:none}
+.stat b{color:#fff;font-size:1rem}
+.hero-cta-note{margin-top:16px;font-size:.8rem;color:#B9C9E8;display:flex;align-items:center;gap:8px}
+/* ============ FEATURE STRIP ============ */
+.strip{background:var(--white);border-bottom:1px solid var(--line)}
+.strip .container{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.strip-item{padding:26px 22px;display:flex;gap:14px;align-items:flex-start;border-right:1px solid var(--line)}
+.strip-item:last-child{border-right:none}
+.strip-icon{width:46px;height:46px;border-radius:12px;background:var(--blue-soft);color:var(--navy);display:grid;place-items:center;font-size:1.3rem;flex-shrink:0}
+.strip-item h4{font-size:.95rem;font-weight:700;color:var(--navy-dark);margin-bottom:3px}
+.strip-item p{font-size:.8rem;color:var(--muted)}
+/* ============ SECTIONS GENERIC ============ */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:.25s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:#CBD8F0}
+.card-icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;margin-bottom:16px}
+.card h3{font-size:1.05rem;font-weight:800;color:var(--navy-dark);margin-bottom:8px}
+.card p{font-size:.9rem;color:var(--muted)}
+.ic-navy{background:var(--blue-soft);color:var(--navy)}
+.ic-green{background:var(--green-soft);color:var(--green)}
+.ic-gold{background:var(--gold-soft);color:#9A7B10}
+/* ============ TENTANG ============ */
+.about-visual{position:relative}
+.about-img{width:100%;aspect-ratio:4/3.4;object-fit:cover;border-radius:22px;box-shadow:var(--shadow-lg)}
+.about-badge{position:absolute;bottom:-24px;right:-14px;background:var(--navy);color:#fff;padding:20px 24px;border-radius:18px;box-shadow:var(--shadow-lg);text-align:center;min-width:170px}
+.about-badge b{font-size:1.7rem;font-weight:800;display:block;line-height:1}
+.about-badge span{font-size:.75rem;color:#C9D7F3;font-weight:600}
+.check-list{list-style:none;margin-top:20px;display:grid;gap:12px}
+.check-list li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;color:var(--ink)}
+.check-list .ck{width:24px;height:24px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:.8rem;flex-shrink:0;margin-top:2px}
+/* ============ PROGRAM TABS ============ */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;justify-content:center}
+.tab{padding:10px 22px;border-radius:999px;border:1.5px solid var(--line);background:var(--white);font-weight:700;font-size:.88rem;color:var(--muted);cursor:pointer;transition:.2s}
+.tab:hover{border-color:var(--navy);color:var(--navy)}
+.tab.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* ============ BERITA ============ */
+.news-card{overflow:hidden;padding:0;display:flex;flex-direction:column}
+.news-thumb{height:180px;object-fit:cover;width:100%}
+.news-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.news-meta{display:flex;gap:14px;font-size:.78rem;color:var(--muted);font-weight:600}
+.news-meta .tag{background:var(--blue-soft);color:var(--navy);padding:3px 10px;border-radius:999px;font-size:.7rem}
+.news-body h3{font-size:1rem;font-weight:800;color:var(--navy-dark);line-height:1.35}
+.news-body p{font-size:.86rem;color:var(--muted);flex:1}
+.read-more{font-weight:700;font-size:.85rem;color:var(--navy);display:inline-flex;align-items:center;gap:6px}
+.read-more:hover{gap:10px;transition:.2s}
+/* ============ GALERI ============ */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.g-item{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1;cursor:pointer}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.g-item:hover img{transform:scale(1.08)}
+.g-item::after{content:attr(data-label);position:absolute;inset:auto 0 0 0;padding:26px 14px 12px;background:linear-gradient(transparent,rgba(5,28,69,.85));color:#fff;font-size:.78rem;font-weight:600}
+/* ============ PPDB ============ */
+.ppdb-banner{background:linear-gradient(135deg,var(--navy-deep),var(--navy));border-radius:24px;color:#fff;padding:52px;position:relative;overflow:hidden}
+.ppdb-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 90% 10%,rgba(201,162,39,.25),transparent 60%)}
+.ppdb-banner .container{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;max-width:1000px}
+.ppdb-banner h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;margin-bottom:12px}
+.ppdb-banner p{color:#D6E2F8;margin-bottom:8px;font-size:.95rem}
+.ppdb-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.step{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:18px;text-align:center}
+.step b{display:block;font-size:1.5rem;color:var(--gold);font-weight:800;margin-bottom:6px}
+.step span{font-size:.8rem;color:#D6E2F8;font-weight:600}
+/* ============ EKSTRAKURIKULER ============ */
+.extra-item{display:flex;gap:16px;align-items:center;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--white);transition:.2s}
+.extra-item:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.extra-icon{width:48px;height:48px;border-radius:12px;background:var(--blue-soft);color:var(--navy);display:grid;place-items:center;font-size:1.3rem;flex-shrink:0}
+.extra-item h4{font-size:.95rem;font-weight:700;color:var(--navy-dark)}
+.extra-item p{font-size:.78rem;color:var(--muted)}
+/* ============ PRESTASI ============ */
+.achieve{display:flex;gap:22px;align-items:center;padding:26px;border:1px solid var(--line);border-radius:16px;background:var(--white)}
+.achieve-medal{width:56px;height:56px;border-radius:50%;background:var(--gold-soft);color:#9A7B10;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0}
+.achieve h3{font-size:1rem;font-weight:800;color:var(--navy-dark);margin-bottom:4px}
+.achieve p{font-size:.86rem;color:var(--muted)}
+.achieve .yr{font-size:.74rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-top:6px;display:block}
+/* ============ ALUMNI / CTA ============ */
+.alumni-cta{background:var(--navy-dark);border-radius:24px;padding:44px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.alumni-cta::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 220px at 15% 20%,rgba(201,162,39,.2),transparent 60%)}
+.alumni-cta h2{font-size:clamp(1.4rem,2.8vw,2rem);font-weight:800;margin-bottom:10px;position:relative}
+.alumni-cta p{color:#C9D7F3;margin-bottom:24px;position:relative}
+/* ============ FOOTER ============ */
+footer{background:var(--navy-deep);color:#B9C9E8;padding:64px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:44px}
+.footer-brand p{font-size:.88rem;margin-top:14px;max-width:300px}
+.footer h4{color:#fff;font-weight:700;font-size:.95rem;margin-bottom:18px}
+.footer ul{list-style:none;display:grid;gap:10px}
+.footer ul a{font-size:.88rem;transition:.2s}
+.footer ul a:hover{color:var(--gold)}
+.footer-contact li{display:flex;gap:10px;font-size:.86rem;align-items:flex-start}
+.footer-contact .ic{color:var(--gold);flex-shrink:0}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.8rem}
+.footer-bottom a{color:var(--gold)}
+/* ============ SUBPAGE ============ */
+.page-hero{background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;padding:64px 0;position:relative;overflow:hidden}
+.page-hero::after{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 85% 0%,rgba(201,162,39,.2),transparent 60%)}
+.page-hero .container{position:relative;z-index:2}
+.page-hero h1{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;margin-bottom:8px}
+.page-hero p{color:#D6E2F8;max-width:640px}
+.breadcrumb{display:flex;gap:8px;font-size:.8rem;color:#9DB4DC;margin-bottom:14px;font-weight:600}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb .sep{opacity:.5}
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  .hero .container{grid-template-columns:1fr;gap:36px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr 1fr}
+  .strip .container{grid-template-columns:1fr 1fr}
+  .strip-item{border-bottom:1px solid var(--line)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .ppdb-banner .container{grid-template-columns:1fr}
+  .ppdb-steps{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  nav.menu{display:none;position:absolute;top:74px;left:0;right:0;background:#fff;flex-direction:column;padding:16px;gap:6px;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  nav.menu.open{display:flex}
+  .hamburger{display:grid}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .strip .container{grid-template-columns:1fr}
+  .hero{padding:64px 0}
+  .ppdb-banner{padding:36px 24px}
+  .ppdb-steps{grid-template-columns:1fr 1fr;gap:10px}
+  .footer-grid{grid-template-columns:1fr}
+  .section{padding:56px 0}
+  .topbar .container{justify-content:center}
+  .about-badge{right:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <span>📍 Jl. Pakel Baru Sorosutan No.40, Umbulharjo, Yogyakarta</span>
+    <span>📞 0815-6863-906 &nbsp;·&nbsp; ✉️ sdmuhpakel@gmail.com</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand">
+      <div class="logo">SD</div>
+      <div class="brand-name">SD Muhammadiyah Pakel<small>Program Plus · Yogyakarta</small></div>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#" class="active">Beranda</a>
+      <a href="#tentang">Profil</a>
+      <a href="#program">Program</a>
+      <a href="#berita">Berita</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#ekstra">Ekstrakurikuler</a>
+      <a href="#prestasi">Prestasi</a>
+      <a href="#alumni">Alumni</a>
+      <a href="#ppdb" class="btn btn-gold btn-sm">PPDB 2026/2027</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <div class="hero-badge"><span class="dot"></span> PPDB Tahun Ajaran 2026/2027 Telah Dibuka</div>
+      <h1>Generasi Islam Masa Depan, <em>Berakhlak Mulia, Modern & Kreatif</em></h1>
+      <p class="lead">SD Muhammadiyah Pakel Program Plus — satu-satunya SD Muhammadiyah di Kota Yogyakarta yang menerapkan sistem Fullday School sejak tahun 1998. Menyeimbangkan ilmu dunia dan agama dalam satu lingkungan belajar yang menyenangkan.</p>
+      <div class="hero-actions">
+        <a href="#ppdb" class="btn btn-gold">Daftar PPDB Sekarang</a>
+        <a href="#tentang" class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff">Kenali Sekolah Kami</a>
+      </div>
+      <div class="hero-quote">"Menuntut ilmu itu wajib atas setiap muslim — dan kami menghadirkan pendidikan yang menyeimbangkan keimanan, akhlak, dan keilmuan."</div>
+    </div>
+    <div class="hero-card">
+      <h3>Kenapa SD Muhammadiyah Pakel?</h3>
+      <div class="stat"><span>🕌 Fullday School</span><b>Sejak 1998</b></div>
+      <div class="stat"><span>📖 Kurikulum</span><b>Nasional + Plus</b></div>
+      <div class="stat"><span>👨‍🏫 Program Plus</span><b>Islami & Modern</b></div>
+      <div class="stat"><span>🏆 Terakreditasi</span><b>Unggul</b></div>
+      <div class="stat"><span>📍 Lokasi</span><b>Strategis, Jogja</b></div>
+      <div class="hero-cta-note">🔒 Info PPDB resmi & terbaru ada di halaman ini</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="container">
+    <div class="strip-item"><div class="strip-icon">🕌</div><div><h4>Islami & Berakhlak</h4><p>Pembiasaan ibadah & karakter Islami setiap hari</p></div></div>
+    <div class="strip-item"><div class="strip-icon">📚</div><div><h4>Kurikulum Lengkap</h4><p>Nasional + Muhammadiyah + Program Plus</p></div></div>
+    <div class="strip-item"><div class="strip-icon">🏃</div><div><h4>Ekstrakurikuler</h4><p>Kewiraan, olahraga, ilmiah & seni</p></div></div>
+    <div class="strip-item"><div class="strip-icon">🤝</div><div><h4>Fullday School</h4><p>Belajar terarah hingga sore, aman bagi wali murid</p></div></div>
+  </div>
+</div>
+
+<!-- TENTANG -->
+<section class="section" id="tentang">
+  <div class="container grid-2">
+    <div class="about-visual">
+      <img class="about-img" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=70" alt="Gedung sekolah SD Muhammadiyah Pakel">
+      <div class="about-badge"><b>1998</b><span>Fullday School</span></div>
+    </div>
+    <div>
+      <span class="kicker">Tentang Kami</span>
+      <h2 class="title">Mewujudkan Cita-Cita Luhur KH. Ahmad Dahlan</h2>
+      <p class="sub">SD Muhammadiyah Pakel dengan pengembangan Program Plus berusaha mewujudkan cita-cita luhur KH. Ahmad Dahlan — menyeimbangkan ilmu melalui Kurikulum Nasional, Kurikulum Muhammadiyah, dan Kurikulum Plus yang membekali anak didik dasar pengetahuan umum dan pengetahuan agama.</p>
+      <ul class="check-list">
+        <li><span class="ck">✓</span><span><b>Karakter Islami</b> — pembiasaan ibadah, akhlak mulia, dan kedisiplinan dalam keseharian.</span></li>
+        <li><span class="ck">✓</span><span><b>Modern & Kreatif</b> — pembelajaran aktif, teknologi, dan pengembangan bakat siswa.</span></li>
+        <li><span class="ck">✓</span><span><b>Lingkungan Aman</b> — sistem fullday terarah dengan pendampingan guru sepanjang hari.</span></li>
+        <li><span class="ck">✓</span><span><b>Teruji Sejak 1998</b> — pengalaman lebih dari dua dekade mendidik generasi Islam.</span></li>
+      </ul>
+      <div style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#" class="btn">Sejarah Sekolah</a>
+        <a href="#" class="btn btn-ghost">Visi & Misi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section class="section section-alt" id="program">
+  <div class="container">
+    <div class="center">
+      <span class="kicker" style="justify-content:center">Program Unggulan</span>
+      <h2 class="title">Tiga Pilar Kurikulum Kami</h2>
+      <p class="sub center">Perpaduan kurikulum yang membekali anak didik dengan dasar pengetahuan umum dan pengetahuan agama, sesuai kaidah Pendidikan Dasar dan Menengah Muhammadiyah.</p>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="kurikulum">Kurikulum</button>
+      <button class="tab" data-tab="plus">Program Plus</button>
+      <button class="tab" data-tab="fullday">Fullday School</button>
+    </div>
+    <div class="tab-panel active" id="panel-kurikulum">
+      <div class="grid-3">
+        <div class="card"><div class="card-icon ic-navy">🇮🇩</div><h3>Kurikulum Nasional</h3><p>Mengikuti standar pendidikan nasional (Kurikulum Merdeka) dengan penguatan literasi, numerasi, dan karakter.</p></div>
+        <div class="card"><div class="card-icon ic-green">🕌</div><h3>Kurikulum Muhammadiyah</h3><p>Pendidikan Al-Islam, Kemuhammadiyahan, dan Bahasa Arab (ISMUBA) sebagai ciri khas sekolah Muhammadiyah.</p></div>
+        <div class="card"><div class="card-icon ic-gold">⭐</div><h3>Kurikulum Plus</h3><p>Program pengayaan: tahfidz, bahasa asing, sains, dan keterampilan yang membekali anak didik masa depan.</p></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="panel-plus">
+      <div class="grid-3">
+        <div class="card"><div class="card-icon ic-gold">📖</div><h3>Tahfidz Al-Qur'an</h3><p>Program hafalan Al-Qur'an bertahap dengan metode yang menyenangkan dan target yang realistis.</p></div>
+        <div class="card"><div class="card-icon ic-green">🌏</div><h3>Bahasa Arab & Inggris</h3><p>Pengenalan bahasa asing sejak dini untuk membekali anak didik di era global.</p></div>
+        <div class="card"><div class="card-icon ic-navy">🔬</div><h3>Sains & Teknologi</h3><p>Pembelajaran berbasis eksperimen, robotika, dan pengenalan teknologi secara bijak.</p></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="panel-fullday">
+      <div class="grid-3">
+        <div class="card"><div class="card-icon ic-navy">🕰️</div><h3>Belajar Terarah</h3><p>Kegiatan belajar terstruktur dari pagi hingga sore dengan pendampingan guru.</p></div>
+        <div class="card"><div class="card-icon ic-green">🍽️</div><h3>Makan Siang Bersama</h3><p>Pembiasaan makan sehat dan adab makan bersama di lingkungan sekolah.</p></div>
+        <div class="card"><div class="card-icon ic-gold">🕌</div><h3>Ibadah Bersama</h3><p>Sholat dhuhur dan ashar berjamaah serta pembiasaan dzikir dan doa harian.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BERITA -->
+<section class="section" id="berita">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:34px">
+      <div>
+        <span class="kicker">Informasi Terbaru</span>
+        <h2 class="title" style="margin-bottom:0">Berita & Prestasi Sekolah</h2>
+      </div>
+      <a href="#" class="btn btn-ghost btn-sm">Lihat Semua Berita →</a>
+    </div>
+    <div class="grid-3">
+      <article class="card news-card">
+        <img class="news-thumb" src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=70" alt="Kegiatan belajar mengajar">
+        <div class="news-body">
+          <div class="news-meta"><span class="tag">Kegiatan</span><span>07 Nov 2024</span></div>
+          <h3>Juara 3 Musabaqah Tilawatil Qur'an Putra</h3>
+          <p>Alhamdulillah, siswa SD Muhammadiyah Pakel berhasil meraih Juara 3 MTQ Putra. Semoga menjadi penyemangat bagi siswa lainnya.</p>
+          <a href="#" class="read-more">Selengkapnya →</a>
+        </div>
+      </article>
+      <article class="card news-card">
+        <img class="news-thumb" src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=70" alt="Siswa belajar di kelas">
+        <div class="news-body">
+          <div class="news-meta"><span class="tag">Kegiatan</span><span>25 Okt 2024</span></div>
+          <h3>Kegiatan MPLS & Orientasi Siswa Baru</h3>
+          <p>Masa Pengenalan Lingkungan Sekolah berjalan meriah dengan berbagai kegiatan pengenalan budaya sekolah, ibadah, dan permainan edukatif.</p>
+          <a href="#" class="read-more">Selengkapnya →</a>
+        </div>
+      </article>
+      <article class="card news-card">
+        <img class="news-thumb" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=70" alt="Kegiatan belajar">
+        <div class="news-body">
+          <div class="news-meta"><span class="tag">Program</span><span>12 Sep 2024</span></div>
+          <h3>Program Tahfidz & Pembiasaan Ibadah Harian</h3>
+          <p>Program unggulan tahfidz dan pembiasaan ibadah harian terus berjalan dengan pendampingan guru secara konsisten.</p>
+          <a href="#" class="read-more">Selengkapnya →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALERI -->
+<section class="section section-alt" id="galeri">
+  <div class="container">
+    <div class="center">
+      <span class="kicker" style="justify-content:center">Dokumentasi</span>
+      <h2 class="title">Galeri Kegiatan & Fasilitas</h2>
+      <p class="sub center">Momen belajar, ibadah, dan bermain yang menyenangkan di lingkungan SD Muhammadiyah Pakel.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item" data-label="Kegiatan Belajar"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=70" alt="Belajar di kelas"></div>
+      <div class="g-item" data-label="Ibadah Bersama"><img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=600&q=70" alt="Ibadah"></div>
+      <div class="g-item" data-label="Ekstrakurikuler"><img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=600&q=70" alt="Olahraga"></div>
+      <div class="g-item" data-label="Perpustakaan"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=70" alt="Perpustakaan"></div>
+      <div class="g-item" data-label="Kegiatan Seni"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=70" alt="Seni"></div>
+      <div class="g-item" data-label="Upacara & Apel"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=70" alt="Upacara"></div>
+      <div class="g-item" data-label="Halaman Sekolah"><img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=70" alt="Halaman sekolah"></div>
+      <div class="g-item" data-label="Kegiatan Outdoor"><img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=600&q=70" alt="Outdoor"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EKSTRAKURIKULER -->
+<section class="section" id="ekstra">
+  <div class="container">
+    <div class="center">
+      <span class="kicker" style="justify-content:center">Pengembangan Bakat</span>
+      <h2 class="title">Ekstrakurikuler</h2>
+      <p class="sub center">Wadah pengembangan bakat dan minat siswa di luar jam pelajaran.</p>
+    </div>
+    <div class="grid-3">
+      <div class="extra-item"><div class="extra-icon">🛡️</div><div><h4>Kewiraan</h4><p>Tapak suci, Hizbul Wathan (HW) — membentuk kedisiplinan & kepemimpinan.</p></div></div>
+      <div class="extra-item"><div class="extra-icon">⚽</div><div><h4>Olahraga</h4><p>Sepak bola, futsal, bulu tangkis, dan atletik.</p></div></div>
+      <div class="extra-item"><div class="extra-icon">🔬</div><div><h4>Ilmiah</h4><p>Pramuka, sains club, dan karya ilmiah remaja.</p></div></div>
+      <div class="extra-item"><div class="extra-icon">🎨</div><div><h4>Seni & Kreativitas</h4><p>Seni lukis, kaligrafi, dan kerajinan tangan.</p></div></div>
+      <div class="extra-item"><div class="extra-icon">🎤</div><div><h4>Tilawah & Tahfidz</h4><p>Penguatan hafalan dan seni baca Al-Qur'an.</p></div></div>
+      <div class="extra-item"><div class="extra-icon">🌐</div><div><h4>Bahasa Asing</h4><p>English club dan muhadatsah bahasa Arab.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESTASI -->
+<section class="section section-alt" id="prestasi">
+  <div class="container">
+    <div class="center">
+      <span class="kicker" style="justify-content:center">Kebanggaan Kami</span>
+      <h2 class="title">Prestasi Siswa</h2>
+      <p class="sub center">Pencapaian terbaik siswa SD Muhammadiyah Pakel di berbagai ajang.</p>
+    </div>
+    <div class="grid-2">
+      <div class="achieve"><div class="achieve-medal">🥉</div><div><h3>Juara 3 Musabaqah Tilawatil Qur'an Putra</h3><p>Tingkat Kota Yogyakarta</p><span class="yr">Nov 2024</span></div></div>
+      <div class="achieve"><div class="achieve-medal">🥈</div><div><h3>Juara 2 Lomba Tahfidz Juz 30</h3><p>Tingkat Kapanewon Umbulharjo</p><span class="yr">Okt 2024</span></div></div>
+      <div class="achieve"><div class="achieve-medal">🥇</div><div><h3>Juara 1 Cerdas Cermat ISMUBA</h3><p>Tingkat SD Muhammadiyah se-DIY</p><span class="yr">Sep 2024</span></div></div>
+      <div class="achieve"><div class="achieve-medal">🥉</div><div><h3>Juara 3 Olimpiade Sains Nasional</h3><p>Babak Kecamatan, bidang IPA</p><span class="yr">Agu 2024</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PPDB -->
+<section class="section" id="ppdb">
+  <div class="container">
+    <div class="ppdb-banner">
+      <div class="container">
+        <div>
+          <span class="kicker" style="color:var(--gold)">PPDB 2026/2027</span>
+          <h2>Penerimaan Peserta Didik Baru Telah Dibuka</h2>
+          <p>Daftarkan putra-putri terbaik Anda untuk bergabung menjadi bagian dari keluarga besar SD Muhammadiyah Pakel.</p>
+          <p style="font-weight:700;color:#fff">Kuota terbatas — daftar sebelum kuota terpenuhi!</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+            <a href="#" class="btn btn-gold">Daftar Online</a>
+            <a href="#" class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff">Hubungi Panitia PPDB</a>
+          </div>
+        </div>
+        <div>
+          <div class="hero-card" style="background:rgba(255,255,255,.1)">
+            <h3 style="color:var(--gold-soft)">Informasi Pendaftaran</h3>
+            <div class="stat"><span>🗓️ Pendaftaran</span><b>Jan–Jun 2026</b></div>
+            <div class="stat"><span>📋 Gelombang 1</span><b>Jan–Mar</b></div>
+            <div class="stat"><span>💳 Biaya</span><b>Hubungi kami</b></div>
+            <div class="stat"><span>☎️ CP PPDB</span><b>0815-6863-906</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALUMNI -->
+<section class="section section-alt" id="alumni">
+  <div class="container">
+    <div class="alumni-cta">
+      <h2>Alumni SD Muhammadiyah Pakel</h2>
+      <p>Bagikan kabar dan jejak langkah Anda setelah lulus dari SD Muhammadiyah Pakel. Silaturahmi alumni tetap terjaga melalui pendataan alumni.</p>
+      <a href="#" class="btn btn-gold">Isi Pendataan Alumni</a>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section class="section" id="kontak">
+  <div class="container">
+    <div class="center">
+      <span class="kicker" style="justify-content:center">Hubungi Kami</span>
+      <h2 class="title">Kontak & Lokasi</h2>
+      <p class="sub center">Silakan hubungi kami untuk informasi lebih lanjut atau kunjungi sekolah kami.</p>
+    </div>
+    <div class="grid-2" style="align-items:stretch">
+      <div class="card" style="display:flex;flex-direction:column;gap:18px">
+        <div class="extra-item" style="border:none;padding:0"><div class="extra-icon">📍</div><div><h4>Alamat</h4><p>Jl. Pakel Baru Sorosutan No.40, Sorosutan, Kec. Umbulharjo, Kota Yogyakarta, D.I. Yogyakarta 55162</p></div></div>
+        <div class="extra-item" style="border:none;padding:0"><div class="extra-icon">📞</div><div><h4>Telepon / WhatsApp</h4><p>0815-6863-906</p></div></div>
+        <div class="extra-item" style="border:none;padding:0"><div class="extra-icon">✉️</div><div><h4>Email</h4><p>sdmuhpakel@gmail.com</p></div></div>
+        <a href="#" class="btn" style="justify-content:center">Kirim Pesan via WhatsApp</a>
+      </div>
+      <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:320px">
+        <iframe title="Lokasi SD Muhammadiyah Pakel" src="https://maps.google.com/maps?q=Jl.+Pakel+Baru+Sorosutan+No.40,+Umbulharjo,+Yogyakarta&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;min-height:320px" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <div class="logo">SD</div>
+          <div class="brand-name" style="color:#fff">SD Muhammadiyah Pakel<small style="color:#9DB4DC">Program Plus · Yogyakarta</small></div>
+        </a>
+        <p>Mewujudkan generasi Islam masa depan yang berakhlak mulia, modern, dan kreatif melalui pendidikan yang menyeimbangkan ilmu umum dan agama.</p>
+      </div>
+      <div>
+        <h4>Menu Utama</h4>
+        <ul>
+          <li><a href="#">Beranda</a></li>
+          <li><a href="#tentang">Profil Sekolah</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#berita">Berita</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informasi</h4>
+        <ul>
+          <li><a href="#ppdb">Info PPDB</a></li>
+          <li><a href="#ekstra">Ekstrakurikuler</a></li>
+          <li><a href="#prestasi">Prestasi</a></li>
+          <li><a href="#alumni">Alumni</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontak Kami</h4>
+        <ul class="footer-contact">
+          <li><span class="ic">📍</span><span>Jl. Pakel Baru Sorosutan No.40, Umbulharjo, Yogyakarta 55162</span></li>
+          <li><span class="ic">📞</span><span>0815-6863-906</span></li>
+          <li><span class="ic">✉️</span><span>sdmuhpakel@gmail.com</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SD Muhammadiyah Pakel. All rights reserved.</span>
+      <span>Dibuat dengan ❤️ oleh <a href="#">NovskiDev</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+const hamburger=document.getElementById('hamburger');
+const menu=document.getElementById('menu');
+hamburger.addEventListener('click',()=>{menu.classList.toggle('open')});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Scrollspy (simple)
+const sections=['tentang','program','berita','galeri','ekstra','prestasi','alumni','ppdb'];
+const links=[...menu.querySelectorAll('a')];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-120)cur=id;
+  });
+  links.forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+},{passive:true});
+</script>
+</body>
+</html>
