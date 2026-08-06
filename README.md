@@ -8,6 +8,7 @@ Demo live untuk proposal penawaran pembuatan website profil sekolah (Paket Stand
 |---|---|
 | **Website sekolah** | https://novskidev.github.io/demo-sd-muhpakel/ |
 | **Panel admin sekolah** | https://novskidev.github.io/demo-sd-muhpakel/admin/ |
+| **Customizer live** | https://novskidev.github.io/demo-sd-muhpakel/admin/customizer.html |
 
 ## 🔑 Demo Panel Admin
 
@@ -28,6 +29,18 @@ Demo live untuk proposal penawaran pembuatan website profil sekolah (Paket Stand
 - Pendataan alumni
 - Kontak + Google Maps
 - Footer + credit
+
+## 🎛️ Customizer Live (Fitur Unggulan)
+
+Ubah tampilan website **secara real-time** tanpa sentuh kode:
+
+- 🧭 **Navbar** — teks logo, tagline, warna latar, warna menu, gaya (solid/blur/gradasi), tinggi, show/hide menu
+- 🎨 **Warna** — 6 preset tema + custom color picker (primary, aksen, gelap, sukses, latar)
+- 🖼️ **Hero** — judul, sub-judul, teks tombol, banner PPDB, posisi teks, show/hide panel & quote
+- 🔤 **Font** — 5 pilihan font heading + body, ukuran dasar
+- 🦶 **Footer** — alamat, telepon, email, copyright, credit, warna latar
+- 🧩 **Bagian** — show/hide 10 bagian website (strip, tentang, program, berita, galeri, ekstra, prestasi, PPDB, alumni, kontak)
+- 📱 **Preview device** — desktop, tablet, mobile
 
 ## ⚙️ Fitur Panel Admin
 
