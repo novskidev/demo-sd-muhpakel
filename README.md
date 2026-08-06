@@ -7,6 +7,7 @@ Demo live untuk proposal penawaran pembuatan website profil sekolah (Paket Stand
 | Demo | URL |
 |---|---|
 | **Website sekolah** | https://novskidev.github.io/demo-sd-muhpakel/ |
+| **Halaman PPDB + formulir** | https://novskidev.github.io/demo-sd-muhpakel/ppdb.html |
 | **Panel admin sekolah** | https://novskidev.github.io/demo-sd-muhpakel/admin/ |
 | **Customizer live** | https://novskidev.github.io/demo-sd-muhpakel/admin/customizer.html |
 
