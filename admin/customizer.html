@@ -436,10 +436,17 @@ function buildHtmlPatch(doc){
   // HERO
   const h1=doc.querySelector('.hero h1');
   if(h1){
-    // keep <em> inside
-    const em=h1.querySelector('em');
-    if(em){const before=document.createTextNode(h.title.replace(/<[^>]+>/g,''));h1.textContent='';h1.appendChild(before);h1.appendChild(em);}
-    else h1.textContent=h.title;
+    const t=h.title;
+    const idx=t.lastIndexOf(',');
+    if(idx>-1){
+      h1.textContent='';
+      h1.appendChild(document.createTextNode(t.slice(0,idx+1)+' '));
+      const em=document.createElement('em');
+      em.textContent=t.slice(idx+1).trim();
+      h1.appendChild(em);
+    }else{
+      h1.textContent=t;
+    }
   }
   const lead=doc.querySelector('.hero p.lead');
   if(lead)lead.textContent=h.sub;
