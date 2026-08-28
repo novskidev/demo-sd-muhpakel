@@ -58,6 +58,15 @@ a.card.demo-link:hover .go{color:var(--gold)}
 .step .n{width:36px;height:36px;margin:0 auto 10px;background:linear-gradient(135deg,var(--gold),#B08D1F);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
 .step h4{font-size:13.5px;font-weight:800;color:var(--navy-dark);margin-bottom:4px}
 .step p{font-size:12px;color:var(--muted);line-height:1.5}
+.arch{display:flex;flex-direction:column;align-items:center;gap:8px;margin:20px 0 8px}
+.arch-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 20px;text-align:center;min-width:280px}
+.arch-box.main{border:2px solid var(--gold);background:rgba(240,217,140,.08)}
+.arch-title{font-weight:800;color:#F0D98C;font-size:15px;margin-bottom:4px}
+.arch-sub{font-size:12px;color:rgba(255,255,255,.65);line-height:1.4}
+.arch-inner{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.chip{background:var(--navy);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.2)}
+.arch-arrow{color:#F0D98C;font-size:18px;font-weight:800}
+.arch-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:14px 30px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#B08D1F);color:#fff;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 8px 22px rgba(201,162,39,.4);transition:.2s}
 .cta:hover{transform:translateY(-2px)}
 .cta.wa{background:#25D366;box-shadow:0 8px 22px rgba(37,211,102,.35)}
@@ -265,20 +274,28 @@ a.card.demo-link:hover .go{color:var(--gold)}
 <!-- 9. PILIHAN INFRASTRUKTUR -->
 <section class="slide dark">
   <div class="wrap">
-    <div class="sec">07 · Pilihan Infrastruktur</div>
-    <div class="h1">Supabase <em>atau</em> VPS?</div>
-    <p class="body" style="color:rgba(255,255,255,.85)">Keduanya sudah termasuk database, autentikasi, dan penyimpanan. Pilih sesuai kebutuhan sekolah.</p>
-    <table class="tbl">
-      <tr><th style="width:17%">Aspek</th><th>☁️ Supabase (default)</th><th>🖥️ VPS All-in-One (add-on)</th></tr>
-      <tr><td><b>Frontend</b></td><td>Vercel (gratis)</td><td><b>Langsung di VPS</b> — tanpa Vercel</td></tr>
-      <tr><td><b>Backend</b></td><td>Supabase cloud (gratis)</td><td><b>Supabase self-host di VPS yang sama</b></td></tr>
-      <tr><td><b>Biaya</b></td><td><b>Rp 0/bln</b> (s.d. batas gratis)</td><td><b>+Rp 300.000/bln</b></td></tr>
-      <tr><td><b>Biaya Setup</b></td><td>Rp 0</td><td><b>+Rp 1.500.000</b> sekali (setting & migrasi)</td></tr>
-      <tr><td><b>Batas Gratis</b></td><td>500MB database, 1GB storage, 50.000 user, 5GB bandwidth/bln<br><span style="color:#F0D98C;font-size:12px">⚠ project berhenti (pause) jika 7 hari tidak aktif — harus dibuka manual</span></td><td><b>Tidak ada batasan kuota</b> — resource penuh sesuai spek server (2 vCPU, 8GB RAM, 100GB NVMe)</td></tr>
-      <tr><td><b>Upgrade</b></td><td>Supabase Pro <b>+Rp 1.200.000/bln</b> (~$75): DB 8GB, backup point-in-time, bandwidth 250GB</td><td>Scale up spek VPS kapan saja — mulai <b>+Rp 213.000/bln</b> (4 vCPU, 16GB RAM)</td></tr>
-    </table>
-    <div class="h2" style="color:#F0D98C">Rekomendasi: VPS All-in-One</div>
-    <p class="body" style="color:rgba(255,255,255,.85)">Frontend (Next.js) + backend (Supabase) dalam <b>1 VPS</b> — tanpa Vercel, tanpa langganan cloud, tanpa batas kuota. Satu biaya tetap <b>Rp 300.000/bln</b>.</p>
+    <div class="sec">07 · Arsitektur & Infrastruktur</div>
+    <div class="h1">Helipod — <em>server utama</em></div>
+    <p class="body" style="color:rgba(255,255,255,.85)">Semua aplikasi jalan di 1 server Helipod — frontend, backend, database. Dokumen & backup di Cloudflare.</p>
+    <div class="arch">
+      <div class="arch-box main">
+        <div class="arch-title">🖥️ HELIPOD — Rp 61.875/bln</div>
+        <div class="arch-sub">1 vCPU · 1 GB RAM · 15 GB storage · unlimited bandwidth</div>
+        <div class="arch-inner">
+          <span class="chip">Next.js</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Nginx</span>
+        </div>
+      </div>
+      <div class="arch-arrow">↓</div>
+      <div class="arch-row">
+        <div class="arch-box">🗄️ <b>PostgreSQL</b><br><span class="arch-sub">data pendaftar & PPDB</span></div>
+        <div class="arch-box">☁️ <b>Cloudflare R2</b><br><span class="arch-sub">dokumen + backup DB</span></div>
+      </div>
+    </div>
+    <div class="h2" style="color:#F0D98C;margin-top:18px">Kenapa Helipod + R2?</div>
+    <p class="body" style="color:rgba(255,255,255,.85)">✔ Dokumen ±1 GB/tahun disimpan di <b>R2 (gratis)</b>, bukan di server — 15 GB storage cukup.<br>✔ Upload/download via <b>presigned URL</b> — browser langsung ke R2, beban server minimal.<br>✔ Backup PostgreSQL otomatis ke R2 — data aman & bisa restore.<br>✔ <b>Tanpa Vercel, tanpa Supabase</b> — sederhana, murah, mudah maintain.</p>
   </div>
 </section>
 
