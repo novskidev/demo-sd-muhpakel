@@ -271,31 +271,33 @@ a.card.demo-link:hover .go{color:var(--gold)}
   </div>
 </section>
 
-<!-- 9. PILIHAN INFRASTRUKTUR -->
-<section class="slide dark">
+<!-- 9. PILIHAN ARSITEKTUR -->
+<section class="slide">
   <div class="wrap">
-    <div class="sec">07 · Arsitektur & Infrastruktur</div>
-    <div class="h1">Helipod — <em>server utama</em></div>
-    <p class="body" style="color:rgba(255,255,255,.85)">Semua aplikasi jalan di 1 server Helipod — frontend, backend, database. Dokumen & backup di Cloudflare.</p>
-    <div class="arch">
-      <div class="arch-box main">
-        <div class="arch-title">🖥️ HELIPOD — Rp 61.875/bln</div>
-        <div class="arch-sub">1 vCPU · 1 GB RAM · 15 GB storage · unlimited bandwidth</div>
-        <div class="arch-inner">
-          <span class="chip">Next.js</span>
-          <span class="chip">PostgreSQL</span>
-          <span class="chip">Docker</span>
-          <span class="chip">Nginx</span>
-        </div>
+    <div class="sec">07 · Pilihan Arsitektur</div>
+    <div class="h1">3 pilihan <em>infrastruktur</em></div>
+    <p class="body">Semua opsi sudah termasuk hosting, database & penyimpanan dokumen. Pilih sesuai kebutuhan & anggaran sekolah.</p>
+    <div class="packs" style="grid-template-columns:repeat(3,1fr)">
+      <div class="pack">
+        <div class="nama">☁️ Supabase Cloud</div>
+        <div class="nominal">Rp 75rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
+        <div class="feat">Vercel hosting<br>Supabase (DB + storage)<br>R2 terpisah (dokumen)<br>Auto backup cloud<br>Cocok: profil & PPDB reguler</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Setup: Rp 0 · otomatis<br>Paling simpel</div>
       </div>
-      <div class="arch-arrow">↓</div>
-      <div class="arch-row">
-        <div class="arch-box">🗄️ <b>PostgreSQL</b><br><span class="arch-sub">data pendaftar & PPDB</span></div>
-        <div class="arch-box">☁️ <b>Cloudflare R2</b><br><span class="arch-sub">dokumen + backup DB</span></div>
+      <div class="pack rec">
+        <div class="nama">🖥️ Helipod</div>
+        <div class="nominal">Rp 150rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
+        <div class="feat">Semua di 1 server<br>Next.js + PostgreSQL<br>Docker + backup R2<br>Tanpa Vercel & Supabase<br>Cocok: kebanyakan sekolah</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Setup: Rp 500rb sekali<br>Murah & all-in-one</div>
+      </div>
+      <div class="pack">
+        <div class="nama">💪 VPS Dedicated</div>
+        <div class="nominal">Rp 350rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
+        <div class="feat">2 vCPU · 8GB RAM<br>Full kontrol server<br>Email kustom<br>Multi-aplikasi<br>Cocok: PPDB besar, akademik</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Setup: Rp 1,5jt sekali<br>Resource terbesar</div>
       </div>
     </div>
-    <div class="h2" style="color:#F0D98C;margin-top:18px">Kenapa Helipod + R2?</div>
-    <p class="body" style="color:rgba(255,255,255,.85)">✔ Dokumen ±1 GB/tahun disimpan di <b>R2 (gratis)</b>, bukan di server — 15 GB storage cukup.<br>✔ Upload/download via <b>presigned URL</b> — browser langsung ke R2, beban server minimal.<br>✔ Backup PostgreSQL otomatis ke R2 — data aman & bisa restore.<br>✔ <b>Tanpa Vercel, tanpa Supabase</b> — sederhana, murah, mudah maintain.</p>
+    <p class="body" style="margin-top:16px;font-size:13px;text-align:center">💡 Harga sudah termasuk <b>monitoring, keamanan & dukungan teknis</b> setiap bulan. Semua opsi: dokumen & backup tersimpan aman di Cloudflare R2.</p>
   </div>
 </section>
 
