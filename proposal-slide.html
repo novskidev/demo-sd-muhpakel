@@ -132,10 +132,10 @@ a.card.demo-link:hover .go{color:var(--gold)}
       <div class="card"><h4>01 · Pendahuluan</h4><p>Kenapa sekolah butuh website</p></div>
       <div class="card"><h4>02 · Profil Sekolah</h4><p>Fakta singkat SD Muhammadiyah Pakel</p></div>
       <div class="card"><h4>03 · Tujuan & Ruang Lingkup</h4><p>Apa yang akan dibangun</p></div>
-      <div class="card"><h4>04 · Spesifikasi Teknis</h4><p>Teknologi & standar kualitas</p></div>
+      <div class="card"><h4>04 · Pilihan Infrastruktur</h4><p>Supabase, Helipod, atau VPS</p></div>
       <div class="card"><h4>05 · Penawaran Harga</h4><p>3 paket pilihan investasi</p></div>
       <div class="card"><h4>06 · Layanan Pasca-Launch</h4><p>Tarif per edit & paket maintenance</p></div>
-      <div class="card"><h4>07 · Pilihan Infrastruktur</h4><p>Supabase vs VPS + add-on</p></div>
+      <div class="card"><h4>07 · Ringkasan Pilihan</h4><p>Bandingkan 3 opsi sekilas</p></div>
       <div class="card"><h4>08 · Ketentuan & Tahapan</h4><p>Garansi, pembayaran, timeline 55 hari</p></div>
     </div>
   </div>
@@ -198,23 +198,20 @@ a.card.demo-link:hover .go{color:var(--gold)}
   </div>
 </section>
 
-<!-- 6. SPESIFIKASI TEKNIS -->
+<!-- 6. PILIHAN INFRASTRUKTUR -->
 <section class="slide dark">
   <div class="wrap">
-    <div class="sec">04 · Spesifikasi Teknis</div>
-    <div class="h1">Dibangun dengan <em>standar profesional</em></div>
-    <table class="tbl">
-      <tr><th style="width:26%">Aspek</th><th>Spesifikasi</th></tr>
-      <tr><td><b>Desain</b></td><td>Responsive (HP, tablet, desktop) sesuai branding sekolah</td></tr>
-      <tr><td><b>Framework</b></td><td><b>Next.js</b> — React modern, cepat, SEO-friendly</td></tr>
-      <tr><td><b>Hosting & Deploy</b></td><td><b>Vercel</b> — global CDN, SSL otomatis, auto-deploy</td></tr>
-      <tr><td><b>Database</b></td><td><b>Supabase</b> — PostgreSQL terkelola, auth, storage, realtime</td></tr>
-      <tr><td><b>Panel Admin</b></td><td>Kelola berita, galeri, PPDB, halaman, pengaturan tampilan</td></tr>
-      <tr><td><b>Customizer</b></td><td>Ganti warna, font, navbar, teks hero tanpa menyentuh kode</td></tr>
-      <tr><td><b>Keamanan</b></td><td>SSL/HTTPS, proteksi panel admin, backup otomatis</td></tr>
-      <tr><td><b>SEO</b></td><td>Optimasi Google, sitemap, meta tags</td></tr>
-      <tr><td><b>Integrasi</b></td><td>Google Maps, WhatsApp, formulir kontak, media sosial</td></tr>
+    <div class="sec">04 · Pilihan Infrastruktur</div>
+    <div class="h1">4 opsi <em>infrastruktur</em> — semua setup <em>Rp 0</em></div>
+    <p class="body" style="color:rgba(255,255,255,.85)">Aplikasi (Next.js), database (PostgreSQL), dan penyimpanan dokumen (Cloudflare R2). Pilih sesuai kebutuhan & anggaran sekolah.</p>
+    <table class="tbl" style="background:#10222E;border-color:rgba(255,255,255,.15)">
+      <tr style="color:#F0D98C"><th style="width:22%">Opsi</th><th>Biaya</th><th>Spek & Batasan</th></tr>
+      <tr><td><b>☁️ Supabase Free</b></td><td><b>Rp 0/bln</b></td><td>Vercel hosting gratis + Supabase free: 500MB database, 1GB storage, 50.000 user, 5GB bandwidth/bln. ⚠️ Project <b>pause otomatis</b> jika 7 hari tidak aktif (harus dibuka manual). Cukup untuk PPDB ±200 pendaftar.</td></tr>
+      <tr><td><b>🔵 Supabase Pro</b></td><td><b>+Rp 1.200.000/bln</b> (~$75/bln)</td><td>Semua free + database 8GB, backup point-in-time (PITR), bandwidth 250GB, tanpa pause, prioritas support. Cocok saat data & trafik membesar.</td></tr>
+      <tr><td><b>🖥️ Helipod</b></td><td><b>Rp 100.000/bln</b></td><td>1 server all-in-one: 1 vCPU, 1GB RAM, 15GB storage, <b>unlimited bandwidth</b>. Next.js + PostgreSQL (Docker) + Nginx jalan langsung di server — tanpa Vercel, tanpa Supabase cloud. Dokumen & backup di R2.</td></tr>
+      <tr><td><b>💪 VPS Dedicated</b></td><td><b>Rp 300.000/bln</b></td><td>Server lebih besar: 2 vCPU, 8GB RAM, 100GB NVMe. Full kontrol server, email kustom, multi-aplikasi. Frontend + backend + database dalam 1 server, tanpa batas kuota.</td></tr>
     </table>
+    <p class="body" style="margin-top:12px;font-size:13px;color:rgba(255,255,255,.7)">💡 Semua opsi: <b>biaya setup Rp 0</b>, sudah termasuk monitoring, keamanan & dukungan teknis. Dokumen pendaftar & backup database tersimpan aman di Cloudflare R2 (private bucket).</p>
   </div>
 </section>
 
@@ -271,33 +268,30 @@ a.card.demo-link:hover .go{color:var(--gold)}
   </div>
 </section>
 
-<!-- 9. PILIHAN ARSITEKTUR -->
+<!-- 9. RINGKASAN PILIHAN -->
 <section class="slide">
   <div class="wrap">
-    <div class="sec">07 · Pilihan Arsitektur</div>
+    <div class="sec">Ringkasan Pilihan</div>
     <div class="h1">3 pilihan <em>infrastruktur</em></div>
-    <p class="body">Semua opsi sudah termasuk hosting, database & penyimpanan dokumen. Pilih sesuai kebutuhan & anggaran sekolah.</p>
+    <p class="body">Semua opsi sudah termasuk hosting, database & penyimpanan dokumen. Biaya setup Rp 0.</p>
     <div class="packs" style="grid-template-columns:repeat(3,1fr)">
       <div class="pack">
         <div class="nama">☁️ Supabase Cloud</div>
-        <div class="nominal">Rp 75rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
-        <div class="feat">Vercel hosting<br>Supabase (DB + storage)<br>R2 terpisah (dokumen)<br>Auto backup cloud<br>Cocok: profil & PPDB reguler</div>
-        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Setup: Rp 0 · otomatis<br>Paling simpel</div>
+        <div class="nominal">Rp 0<span style="font-size:12px;color:var(--muted)">/bln</span></div>
+        <div class="feat">Vercel + Supabase free<br>500MB DB · 1GB storage<br>5GB bandwidth/bln<br>⚠️ pause 7 hari nonaktif<br>Setup Rp 0</div>
       </div>
       <div class="pack rec">
         <div class="nama">🖥️ Helipod</div>
-        <div class="nominal">Rp 150rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
-        <div class="feat">Semua di 1 server<br>Next.js + PostgreSQL<br>Docker + backup R2<br>Tanpa Vercel & Supabase<br>Cocok: kebanyakan sekolah</div>
-        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Setup: Rp 500rb sekali<br>Murah & all-in-one</div>
+        <div class="nominal">Rp 100rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
+        <div class="feat">1 vCPU · 1GB RAM · 15GB<br>Unlimited bandwidth<br>Next.js + PostgreSQL<br>Tanpa Vercel & Supabase<br>Setup Rp 0</div>
       </div>
       <div class="pack">
         <div class="nama">💪 VPS Dedicated</div>
-        <div class="nominal">Rp 350rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
-        <div class="feat">2 vCPU · 8GB RAM<br>Full kontrol server<br>Email kustom<br>Multi-aplikasi<br>Cocok: PPDB besar, akademik</div>
-        <div style="margin-top:10px;font-size:11px;color:var(--muted)">Setup: Rp 1,5jt sekali<br>Resource terbesar</div>
+        <div class="nominal">Rp 300rb<span style="font-size:12px;color:var(--muted)">/bln</span></div>
+        <div class="feat">2 vCPU · 8GB RAM · 100GB<br>Full kontrol server<br>Email kustom<br>Multi-aplikasi<br>Setup Rp 0</div>
       </div>
     </div>
-    <p class="body" style="margin-top:16px;font-size:13px;text-align:center">💡 Harga sudah termasuk <b>monitoring, keamanan & dukungan teknis</b> setiap bulan. Semua opsi: dokumen & backup tersimpan aman di Cloudflare R2.</p>
+    <p class="body" style="margin-top:16px;font-size:13px;text-align:center">💡 Upgrade Supabase ke <b>Pro +Rp 1.200.000/bln</b> kapan saja (DB 8GB, PITR backup, 250GB bandwidth). Semua opsi: monitoring, keamanan & dukungan teknis sudah termasuk.</p>
   </div>
 </section>
 
